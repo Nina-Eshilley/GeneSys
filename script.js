@@ -1,19 +1,15 @@
-//carrossel da home
+/* =========================================
+   CARROSSEL DA HOME
+========================================= */
 
 const slides = document.querySelectorAll(".slide");
-
 let currentSlide = 0;
 
 function nextSlide() {
   if (!slides.length) return;
 
   slides[currentSlide].classList.remove("active");
-  currentSlide++;
-
-  if (currentSlide >= slides.length) {
-    currentSlide = 0;
-  }
-
+  currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add("active");
 }
 
@@ -21,65 +17,92 @@ if (slides.length > 1) {
   setInterval(nextSlide, 3500);
 }
 
-//equipe
+/* =========================================
+   CARROSSEL DA EQUIPE
+========================================= */
 
 const teamCarousel = document.querySelector(".team-carousel");
 const teamTrack = document.querySelector(".team-track");
+const teamPrev = document.querySelector(".team-prev");
+const teamNext = document.querySelector(".team-next");
+const teamDots = document.querySelector(".team-dots");
 
 if (teamCarousel && teamTrack) {
-  let isDragging = false;
-  let startX = 0;
-  let startScrollLeft = 0;
-  let moved = false;
+  const teamSlides = teamTrack.querySelectorAll(".team-slide");
+  let teamIndex = 0;
 
-  teamCarousel.addEventListener("mousedown", (event) => {
-    isDragging = true;
-    moved = false;
-    startX = event.pageX;
-    startScrollLeft = teamCarousel.scrollLeft;
-    teamCarousel.classList.add("is-dragging");
-  });
-
-  teamCarousel.addEventListener("mousemove", (event) => {
-    if (!isDragging) return;
-
-    const distancia = event.pageX - startX;
-
-    if (Math.abs(distancia) > 5) {
-      moved = true;
-    }
-
-    event.preventDefault();
-    teamCarousel.scrollLeft = startScrollLeft - distancia;
-  });
-
-  function pararArraste() {
-    isDragging = false;
-    teamCarousel.classList.remove("is-dragging");
+  function porPagina() {
+    const largura = teamCarousel.clientWidth;
+    return Math.max(1, Math.floor(largura / 310));
   }
 
-  teamCarousel.addEventListener("mouseup", pararArraste);
-  teamCarousel.addEventListener("mouseleave", pararArraste);
+  function totalPaginas() {
+    return Math.ceil(teamSlides.length / porPagina());
+  }
 
-  teamCarousel.addEventListener("dragstart", (event) => {
-    event.preventDefault();
+  function criarDots() {
+    if (!teamDots) return;
+
+    teamDots.innerHTML = "";
+
+    for (let i = 0; i < totalPaginas(); i++) {
+      const dot = document.createElement("button");
+      dot.className = "team-dot" + (i === teamIndex ? " active" : "");
+      dot.setAttribute("aria-label", "Ir para página " + (i + 1));
+      dot.addEventListener("click", () => irPara(i));
+      teamDots.appendChild(dot);
+    }
+  }
+
+  function atualizar() {
+    if (!teamSlides.length) return;
+
+    const larguraCard = teamSlides[0].offsetWidth + 20;
+    const deslocamento = -(teamIndex * porPagina() * larguraCard);
+
+    teamTrack.style.transform = "translateX(" + deslocamento + "px)";
+
+    document.querySelectorAll(".team-dot").forEach((d, i) => {
+      d.classList.toggle("active", i === teamIndex);
+    });
+  }
+
+  function irPara(novoIndex) {
+    const max = totalPaginas() - 1;
+
+    if (novoIndex < 0) novoIndex = max;
+    if (novoIndex > max) novoIndex = 0;
+
+    teamIndex = novoIndex;
+    atualizar();
+  }
+
+  if (teamNext) teamNext.addEventListener("click", () => irPara(teamIndex + 1));
+  if (teamPrev) teamPrev.addEventListener("click", () => irPara(teamIndex - 1));
+
+  let autoplayTeam = setInterval(() => irPara(teamIndex + 1), 3000);
+
+  teamCarousel.addEventListener("mouseenter", () => {
+    clearInterval(autoplayTeam);
   });
 
-  teamCarousel.addEventListener(
-    "wheel",
-    (event) => {
-      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        if (teamCarousel.scrollWidth > teamCarousel.clientWidth) {
-          teamCarousel.scrollLeft += event.deltaY;
-          event.preventDefault();
-        }
-      }
-    },
-    { passive: false }
-  );
+  teamCarousel.addEventListener("mouseleave", () => {
+    autoplayTeam = setInterval(() => irPara(teamIndex + 1), 3000);
+  });
+
+  window.addEventListener("resize", () => {
+    teamIndex = 0;
+    criarDots();
+    atualizar();
+  });
+
+  criarDots();
+  atualizar();
 }
 
-//menu ativo
+/* =========================================
+   MENU ATIVO
+========================================= */
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-item");
@@ -109,24 +132,9 @@ function updateActiveMenu() {
 window.addEventListener("scroll", updateActiveMenu);
 updateActiveMenu();
 
-
-
-const reveals = document.querySelectorAll(".reveal");
-
-function updateReveals() {
-  reveals.forEach((item) => {
-    const top = item.getBoundingClientRect().top;
-
-    if (top < window.innerHeight - 100) {
-      item.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", updateReveals);
-updateReveals();
-
-
+/* =========================================
+   MODAL INFORMAÇÕES
+========================================= */
 
 const btnQueroInformacoes = document.getElementById("btnQueroInformacoes");
 const modalInformacoes = document.getElementById("modalInformacoes");
@@ -163,9 +171,7 @@ if (btnFecharInformacoes) {
 
 if (modalInformacoes) {
   modalInformacoes.addEventListener("click", (event) => {
-    if (event.target === modalInformacoes) {
-      fecharModalInformacoes();
-    }
+    if (event.target === modalInformacoes) fecharModalInformacoes();
   });
 }
 
@@ -183,7 +189,9 @@ if (btnInformacoesContato) {
   });
 }
 
-
+/* =========================================
+   MODAL CONFIRMAÇÃO
+========================================= */
 
 const modalConfirmacao = document.getElementById("modalConfirmacao");
 const btnFecharConfirmacao = document.getElementById("btnFecharConfirmacao");
@@ -208,13 +216,13 @@ if (btnFecharConfirmacao) {
 
 if (modalConfirmacao) {
   modalConfirmacao.addEventListener("click", (event) => {
-    if (event.target === modalConfirmacao) {
-      fecharModalConfirmacao();
-    }
+    if (event.target === modalConfirmacao) fecharModalConfirmacao();
   });
 }
 
-//form
+/* =========================================
+   FORMULÁRIO
+========================================= */
 
 const contactForm = document.getElementById("contactForm");
 const nomeInput = document.getElementById("nome");
@@ -223,8 +231,6 @@ const telefoneInput = document.getElementById("telefone");
 const assuntoInput = document.getElementById("assunto");
 const mensagemInput = document.getElementById("mensagem");
 const btnEnviarMensagem = document.getElementById("btnEnviarMensagem");
-
-//mostra erro
 
 function mostrarErro(input, mensagem) {
   if (!input) return false;
@@ -235,17 +241,11 @@ function mostrarErro(input, mensagem) {
 
   if (grupo) {
     const erro = grupo.querySelector(".form-error");
-
-    if (erro) {
-      erro.textContent = mensagem;
-    }
+    if (erro) erro.textContent = mensagem;
   }
 
   return false;
 }
-
-
-//limpa erro
 
 function limparErro(input) {
   if (!input) return;
@@ -256,28 +256,19 @@ function limparErro(input) {
 
   if (grupo) {
     const erro = grupo.querySelector(".form-error");
-
-    if (erro) {
-      erro.textContent = "";
-    }
+    if (erro) erro.textContent = "";
   }
 }
 
 function limparTodosErros() {
   if (!contactForm) return;
 
-  const inputs = contactForm.querySelectorAll("input, textarea");
-  inputs.forEach(limparErro);
+  contactForm.querySelectorAll("input, textarea").forEach(limparErro);
 }
-
-
-//valida email
 
 function emailValido(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
-//tel
 
 function apenasNumeros(valor) {
   return valor.replace(/\D/g, "");
@@ -286,13 +277,9 @@ function apenasNumeros(valor) {
 function formatarTelefone(valor) {
   let numero = apenasNumeros(valor);
 
-  if (numero.length > 11) {
-    numero = numero.substring(0, 11);
-  }
+  if (numero.length > 11) numero = numero.substring(0, 11);
 
-  if (numero.length <= 2) {
-    return numero;
-  }
+  if (numero.length <= 2) return numero;
 
   if (numero.length <= 7) {
     return "(" + numero.substring(0, 2) + ") " + numero.substring(2);
@@ -307,8 +294,6 @@ function formatarTelefone(valor) {
     numero.substring(7)
   );
 }
-
-//input tel
 
 if (telefoneInput) {
   telefoneInput.addEventListener("input", (event) => {
@@ -327,29 +312,18 @@ if (telefoneInput) {
       "End",
     ];
 
-    if (teclasPermitidas.includes(event.key)) {
-      return;
-    }
-
-    if (!/^\d$/.test(event.key)) {
-      event.preventDefault();
-    }
+    if (teclasPermitidas.includes(event.key)) return;
+    if (!/^\d$/.test(event.key)) event.preventDefault();
   });
 }
-
-//limpa erro qnd digita
 
 [nomeInput, emailInput, telefoneInput, assuntoInput, mensagemInput].forEach(
   (input) => {
     if (!input) return;
 
-    input.addEventListener("input", () => {
-      limparErro(input);
-    });
+    input.addEventListener("input", () => limparErro(input));
   }
 );
-
-
 
 const camposFormulario = [
   nomeInput,
@@ -361,9 +335,7 @@ const camposFormulario = [
 
 camposFormulario.forEach((campo, index) => {
   campo.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter") {
-      return;
-    }
+    if (event.key !== "Enter") return;
 
     if (campo.tagName.toLowerCase() === "textarea") {
       if (!event.shiftKey) {
@@ -371,11 +343,8 @@ camposFormulario.forEach((campo, index) => {
 
         const proximo = camposFormulario[index + 1];
 
-        if (proximo) {
-          proximo.focus();
-        } else if (btnEnviarMensagem) {
-          btnEnviarMensagem.focus();
-        }
+        if (proximo) proximo.focus();
+        else if (btnEnviarMensagem) btnEnviarMensagem.focus();
       }
 
       return;
@@ -385,16 +354,10 @@ camposFormulario.forEach((campo, index) => {
 
     const proximo = camposFormulario[index + 1];
 
-    if (proximo) {
-      proximo.focus();
-    } else if (btnEnviarMensagem) {
-      btnEnviarMensagem.focus();
-    }
+    if (proximo) proximo.focus();
+    else if (btnEnviarMensagem) btnEnviarMensagem.focus();
   });
 });
-
-
-//valida form
 
 function validarFormulario() {
   let valido = true;
@@ -445,8 +408,6 @@ function validarFormulario() {
   return valido;
 }
 
-//envio do form
-
 if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -455,11 +416,7 @@ if (contactForm) {
 
     if (!formularioValido) {
       const primeiroErro = contactForm.querySelector(".input-error");
-
-      if (primeiroErro) {
-        primeiroErro.focus();
-      }
-
+      if (primeiroErro) primeiroErro.focus();
       return;
     }
 
@@ -469,10 +426,7 @@ if (contactForm) {
       const texto = btnEnviarMensagem.querySelector(".button-text");
       const loading = btnEnviarMensagem.querySelector(".button-loading");
 
-      if (texto) {
-        texto.style.display = "none";
-      }
-
+      if (texto) texto.style.display = "none";
       if (loading) {
         loading.style.display = "inline-flex";
         loading.style.alignItems = "center";
@@ -527,24 +481,19 @@ if (contactForm) {
         const texto = btnEnviarMensagem.querySelector(".button-text");
         const loading = btnEnviarMensagem.querySelector(".button-loading");
 
-        if (texto) {
-          texto.style.display = "inline";
-        }
-
-        if (loading) {
-          loading.style.display = "none";
-        }
+        if (texto) texto.style.display = "inline";
+        if (loading) loading.style.display = "none";
       }
     }
   });
 }
 
-//fecha modal
+/* =========================================
+   ESC FECHA MODAIS
+========================================= */
 
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") {
-    return;
-  }
+  if (event.key !== "Escape") return;
 
   if (modalInformacoes && modalInformacoes.classList.contains("ativa")) {
     fecharModalInformacoes();
