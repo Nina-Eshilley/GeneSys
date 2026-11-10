@@ -1,399 +1,290 @@
 /* ROOT + RESET */
-
-/* Área global de variáveis CSS, reutilizadas em diferentes partes do site. */
 :root {
-  --blue-dark: #1e2a3a; /* define este aspecto visual do elemento */
-  --blue-main: #4B6F93; /* define este aspecto visual do elemento */
-  --blue-light: #B6C7D6; /* define este aspecto visual do elemento */
-  --gold: #EEF2F6; /* define este aspecto visual do elemento */
-
-  --white: #ffffff; /* define este aspecto visual do elemento */
-  --gray: #101522; /* define este aspecto visual do elemento */
-  --text: #1f1f20; /* define este aspecto visual do elemento */
-
-  --bg-main: #EEF2F6; /* define este aspecto visual do elemento */
-  --bg-secondary: #080d1c; /* define este aspecto visual do elemento */
-  --bg-card: rgba(255, 255, 255, 0.055); /* define este aspecto visual do elemento */
-
-  --border: rgba(255, 255, 255, 0.10); /* define este aspecto visual do elemento */
-  --shadow: 0 25px 70px rgba(0, 0, 0, 0.45); /* define este aspecto visual do elemento */
+  --blue-dark: #1e2a3a;
+  --blue-main: #4B6F93;
+  --blue-light: #B6C7D6;
+  --gold: #EEF2F6;
+  --white: #ffffff;
+  --gray: #101522;
+  --text: #1f1f20;
+  --bg-main: #EEF2F6;
+  --border: rgba(0, 0, 0, 0.1);
+  --shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
 }
+
+/* MODO ESCURO */
+body.escuro {
+  --blue-dark: #E8EDF7;
+  --blue-main: #4da3ff;
+  --blue-light: #1e2a3a;
+  --text: #e8edf7;
+  --bg-main: #050816;
+  --border: rgba(255, 255, 255, 0.1);
+}
+body.escuro .header { background: rgba(5, 8, 22, 0.82); }
+body.escuro .header .icon-circle i, 
+body.escuro .header .nav-item span,
+body.escuro .logo img { filter: brightness(10); } /* Deixa a logo e ícones brancos */
 
 * {
-  margin: 0; /* define o espaçamento externo do elemento */
-  padding: 0; /* define o espaçamento interno entre o conteúdo e as bordas */
-  box-sizing: border-box; /* controla como largura e altura são calculadas */
-  font-family: 'Poppins', sans-serif; /* define a família tipográfica usada no elemento */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Elemento raiz da página; aqui são configurados comportamentos gerais do documento. */
-html {
-  scroll-behavior: smooth; /* define este aspecto visual do elemento */
-}
+html { scroll-behavior: smooth; }
 
-/* Corpo da página; define estilos gerais para o conteúdo do site. */
 body {
-  background:  /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-    var(--bg-main);
-  color: var(--text); /* define a cor do texto e, em alguns elementos, dos ícones */
-  overflow-x: hidden; /* controla o conteúdo que ultrapassa os limites na horizontal */
+  background: var(--bg-main);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
-body.modal-open {
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-}
+body.modal-open { overflow: hidden; }
 
-/* Personaliza a aparência da barra de rolagem. */
-::-webkit-scrollbar {
-  width: 10px; /* define a largura do elemento */
-}
-
-/* Personaliza a aparência da barra de rolagem. */
-::-webkit-scrollbar-track {
-  background: #EEF2F6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-}
-
-/* Personaliza a aparência da barra de rolagem. */
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--blue-main)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-radius: 20px; /* arredonda os cantos do elemento */
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--blue-main); border-radius: 20px; }
 
 /* NAVBAR */
-
-/* Estiliza a navegação superior e seus elementos. */
-
 .header {
-  position: fixed; /* define o método de posicionamento do elemento */
-  top: 0; /* define a distância em relação ao topo do elemento de referência */
-  left: 0; /* define a distância em relação à esquerda do elemento de referência */
-  width: 100%; /* define a largura do elemento */
-  height: 103px; /* define a altura do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: space-between; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  padding: 0 7%; /* define o espaçamento interno entre o conteúdo e as bordas */
-  background: rgba(243, 243, 244, 0.82); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09); /* define a borda inferior */
-  backdrop-filter: blur(20px); /* aplica efeitos ao conteúdo que aparece atrás do elemento */
-  -webkit-backdrop-filter: blur(20px); /* versão compatível com navegadores WebKit do efeito no fundo atrás do elemento */
-  box-shadow: 0 15px 45px rgba(137, 144, 199, 0.2); /* adiciona sombra ao redor do elemento */
-  z-index: 1000; /* define a ordem de sobreposição; valores maiores ficam à frente */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 103px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7%;
+  background: rgba(238, 242, 246, 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  transition: background 0.4s ease;
 }
 
-/* Define a aparência e o posicionamento deste elemento da página. */
-.logo {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-}
+.logo { display: flex; align-items: center; }
+.logo img { height: 82px; transform: scale(2.15); transition: filter 0.4s; }
 
-/* Define a aparência e o posicionamento deste elemento da página. */
-.logo img {
-  height: 82px; /* define a altura do elemento */
-  transform: scale(2.15); /* move, gira ou redimensiona visualmente o elemento */
-}
+.navbar { display: flex; gap: 35px; align-items: center; margin-top: 15px; }
 
-/* Estiliza a navegação superior e seus elementos. */
-.navbar {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  gap: 35px; /* define o espaço entre os itens de um layout */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  margin-top: 15px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Estiliza a navegação superior e seus elementos. */
 .nav-item {
-  position: relative; /* define o método de posicionamento do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  flex-direction: column; /* define a direção dos itens no Flexbox: linha ou coluna */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  text-decoration: none; /* controla decoração do texto, como sublinhado */
-  color: #4B6F93; /* define a cor do texto e, em alguns elementos, dos ícones */
-  transition: 0.35s ease; /* suaviza a mudança entre estados ou valores de estilo */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--blue-main);
+  transition: 0.35s ease;
 }
 
-/* Define a aparência e o posicionamento deste elemento da página. */
 .icon-circle {
-  width: 48px; /* define a largura do elemento */
-  height: 48px; /* define a altura do elemento */
-  border-radius: 17px; /* arredonda os cantos do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  transition: 0.35s ease; /* suaviza a mudança entre estados ou valores de estilo */
-  border: 1px solid transparent; /* define a borda: espessura, estilo e cor */
+  width: 48px;
+  height: 48px;
+  border-radius: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.35s ease;
+  border: 1px solid transparent;
 }
 
-/* Define a aparência e o posicionamento deste elemento da página. */
-.icon-circle i {
-  font-size: 28px; /* define o tamanho do texto */
-}
+.icon-circle i { font-size: 28px; }
 
-/* Estiliza a navegação superior e seus elementos. */
 .nav-item span {
-  margin-top: 7px; /* define o espaçamento externo acima do elemento */
-  font-size: 0.78rem; /* define o tamanho do texto */
-  font-weight: 600; /* define a espessura do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  opacity: 0; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  transform: translateY(-5px); /* move, gira ou redimensiona visualmente o elemento */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
+  margin-top: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: 0.3s;
 }
 
-.nav-item:hover span,/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.nav-item.active span {
-  opacity: 1; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  transform: translateY(0); /* move, gira ou redimensiona visualmente o elemento */
-}
+.nav-item:hover span, .nav-item.active span { opacity: 1; transform: translateY(0); }
 
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.nav-item:hover .icon-circle {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  background: rgba(23, 105, 255, 0.18); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-color: rgba(77, 163, 255, 0.35); /* define a cor da borda */
+.nav-item:hover .icon-circle { color: var(--text); background: rgba(75, 111, 147, 0.15); }
 
-}
-
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
 .nav-item.active .icon-circle {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  background: linear-gradient(135deg, #99b9e3, #b6cbe0); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-color: transparent; /* define a cor da borda */
-
+  color: var(--text);
+  background: var(--blue-main);
+  border-color: transparent;
 }
 
-/* Estiliza um botão ou seu estado de interação. */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-tema {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+.btn-tema:hover { background: var(--blue-main); color: white; }
+
 .btn-nav {
-  border: 1px solid rgba(113, 114, 125, 0.15); /* define a borda: espessura, estilo e cor */
-  background-color: #4B6F93; /* define a cor de fundo */
-  color: white; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 16px 28px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 16px; /* arredonda os cantos do elemento */
-  font-weight: 700; /* define a espessura do texto */
-  font-size: 0.95rem; /* define o tamanho do texto */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  transition: 0.35s; /* suaviza a mudança entre estados ou valores de estilo */
+  border: 1px solid transparent;
+  background-color: var(--blue-main);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.35s;
 }
+.btn-nav:hover { transform: translateY(-3px); }
 
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.btn-nav:hover {
-  transform: translateY(-3px); /* move, gira ou redimensiona visualmente o elemento */
-
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 /* HOME */
-
-/* Estiliza a seção inicial (Home) e seus elementos. */
 .home {
   position: relative;
   min-height: 100vh;
-  padding: 135px 7% 90px;
-
+  padding: 160px 7% 90px;
   display: flex;
-  flex-direction: row; /* Organiza o conteúdo lado a lado */
-  flex-wrap: nowrap; /* Impede que o carrossel desça para outra linha */
-
   justify-content: space-between;
   align-items: center;
   gap: 50px;
 }
 
-/* Cria um pseudo-elemento decorativo, sem precisar adicionar outro elemento no HTML. */
-.home::before {
-  content: ""; /* insere conteúdo gerado por CSS, comum em pseudo-elementos */
-  position: absolute; /* define o método de posicionamento do elemento */
-  width: 500px; /* define a largura do elemento */
-  height: 500px; /* define a altura do elemento */
-  left: -250px; /* define a distância em relação à esquerda do elemento de referência */
-  top: 20%; /* define a distância em relação ao topo do elemento de referência */
-  background: radial-gradient(circle, rgba(23, 105, 255, 0.14), transparent 70%); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  pointer-events: none; /* define se o elemento pode receber interações do ponteiro */
-}
+.home-content { flex: 1; min-width: 0; max-width: 680px; z-index: 2; }
 
-/* Estiliza a seção inicial (Home) e seus elementos. */
-.home-content {
-  flex: 1; /* Ocupa o espaço disponível */
-  min-width: 0; /* Permite que o conteúdo se ajuste */
-  max-width: 680px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Estiliza a seção inicial (Home) e seus elementos. */
 .gradient-title {
-  font-size: clamp(2.5rem, 6vw, 5rem); /* define o tamanho do texto */
-  font-weight: 450; /* define a espessura do texto */
-  line-height: 0.95; /* define a altura das linhas de texto e seu espaçamento vertical */
-  letter-spacing: -4px; /* define o espaçamento entre as letras */
-  background: #1e2a3a;
-  background-size: 300% 300%; /* define o tamanho de exibição da imagem de fundo */
-  background-clip: text; /* define até onde o fundo é desenhado */
-  -webkit-background-clip: text; /* versão compatível com navegadores WebKit para limitar a área do fundo */
-  -webkit-text-fill-color: transparent; /* define a cor de preenchimento do texto em navegadores WebKit */
-  animation: gradientMove 7s ease infinite; /* associa uma animação definida com @keyframes ao elemento */
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 450;
+  line-height: 1.05;
+  letter-spacing: -4px;
+  color: var(--blue-dark);
 }
 
-/* DESCRIÇÃO DO SITE */
 .descricao {
-  color: #1e2a3a;/* Define a cor do texto da descrição. */
-  margin-top: 8px;/* Define o espaçamento externo acima da descrição. */
-  width: 100%;/* Faz a descrição ocupar 100% da largura disponível do elemento pai. */
-  font-size: clamp(0.16rem, 2.05vw, 1.05rem); /* Define um  tamanho mínimo, que varia conforme a largura da tela,máximo. */
-  font-weight: 560; /* Define a espessura do texto. Quanto maior o valor, mais grosso ele fica. */
+  color: var(--blue-dark);
+  margin-top: 10px;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 500;
 }
 
-
-/* ANIMAÇÃO DO GRADIENTE */
-@keyframes gradientMove {
-0% {
-    background-position: 0% 50%; /* Define a posição inicial do gradiente. */ }
-50% {
-    background-position: 100% 50%; /* Move o gradiente horizontalmente até o outro lado. */}
-100% {
-    background-position: 0% 50%; /* Retorna o gradiente à posição inicial, criando um ciclo. */ }
-}
-
-
-/* AGRUPAMENTO DOS BOTÕES */
 .home-buttons {
-  display: flex; /* Ativa o Flexbox para organizar os botões. */
-  align-items: center; /* Alinha os botões verticalmente pelo centro. */
-  gap: 20px;/* Define 20px de distância entre os botões. */
-  margin-top: 35px;/* Cria um espaço de 35px entre a descrição e os botões. */
-  flex-wrap: wrap; /*
-     Permite que os botões passem para a linha de baixo
-     quando não houver espaço suficiente. */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 35px;
+  flex-wrap: wrap;
 }
 
-
-/* BOTÃO PRINCIPAL */
 .btn-primary {
-  display: inline-flex;/* Permite que o botão se comporte como um elemento em linha, utilizando os recursos do Flexbox. */
-  align-items: center; /* Centraliza o conteúdo verticalmente. */
-  justify-content: center;/* Centraliza o conteúdo horizontalmente. */
-  margin-top: 0;/* Remove o espaçamento externo acima do botão. */
-  background: #4B6F93;/* Define a cor de fundo do botão. */
-  color: white;/* Define a cor do texto como branco. */
-  text-decoration: none;/* Remove o sublinhado padrão dos links. */
-  padding: 14px 27px; /* Define o espaçamento interno: */
-  border-radius: 14px;/* Arredonda os cantos do botão. */
-  font-weight: 600; /* Define a espessura do texto. */
-  transition: 0.35s;/* Faz as mudanças visuais acontecerem suavemente em 0.35 segundos. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-main);
+  color: white;
+  text-decoration: none;
+  padding: 14px 27px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: 0.35s;
 }
+.btn-primary:hover { transform: translateY(-5px); }
 
-
-/* EFEITO DO BOTÃO PRINCIPAL AO PASSAR O MOUSE */
-.btn-primary:hover {
-  transform: translateY(-5px);/* Move o botão 5px para cima quando o mouse passa sobre ele. */
-}
-
-/* BOTÃO SECUNDÁRIO */
 .btn-secondary {
-  display: inline-flex;  /* Permite utilizar Flexbox dentro do botão. */
-  align-items: center;  /* Centraliza o conteúdo verticalmente. */
-  justify-content: center;  /* Centraliza o conteúdo horizontalmente. */
-  background: transparent;  /* Deixa o fundo transparente. */
-  color: #4B6F93;  /* Define a cor do texto. */
-  border: 2px solid #4B6F93;/* Cria uma borda de 2px com a cor azul. */
-  padding: 15px 28px;  /* Define o espaçamento interno do botão. */
-  border-radius: 14px;  /* Arredonda os cantos. */
-  font-weight: 600;/* Define a espessura do texto. */
-  text-decoration: none;/* Remove o sublinhado padrão do link. */
-  transition: 0.35s; /* Suaviza as mudanças visuais do botão. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--blue-main);
+  border: 2px solid var(--blue-main);
+  padding: 14px 27px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.35s;
 }
+.btn-secondary:hover { transform: translateY(-5px); }
 
-
-/* EFEITO DO BOTÃO SECUNDÁRIO AO PASSAR O MOUSE */
-.btn-secondary:hover {
-  transform: translateY(-5px);/* Move o botão 5px para cima ao passar o mouse. */
-}
-
-
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
 .carousel-container {
-  flex: 0 0 min(34vw, 480px);
+  flex: 0 0 min(40vw, 480px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  position: relative;
 }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
 .carousel {
-  position: relative; /* define o método de posicionamento do elemento */
-  width: 100%; /* define a largura do elemento */
-  max-width: 480px; /* define a largura máxima permitida */
-  aspect-ratio: 1 / 1; /* define a proporção entre largura e altura */
-  border-radius: 34px; /* arredonda os cantos do elemento */
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.12); /* define a borda: espessura, estilo e cor */
-  background: #ffffff; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  border-radius: 34px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #ffffff;
 }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
 .slide {
-  position: absolute; /* define o método de posicionamento do elemento */
-  width: 100%; /* define a largura do elemento */
-  height: 100%; /* define a altura do elemento */
-  object-fit: cover; /* define como a imagem se ajusta à área reservada */
-  opacity: 0; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  transform: scale(1.06); /* move, gira ou redimensiona visualmente o elemento */
-  transition: opacity 1s ease, transform 1.2s ease; /* suaviza a mudança entre estados ou valores de estilo */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1s ease, transform 1.2s ease;
 }
 
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.slide.active {
-  opacity: 1; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  transform: scale(1); /* move, gira ou redimensiona visualmente o elemento */
-}
+.slide.active { opacity: 1; transform: scale(1); }
 
-/* --- SOBRE --- */
-
-.sobre-section {
+/* SOBRE */
+.sobre {
   min-height: 100vh;
   padding: 130px 7%;
   display: flex;
-  align-items: center; /* Centraliza verticalmente */
+  align-items: center;
 }
 
 .sobre-container {
   display: flex;
-  flex-direction: row; /* Força ficar lado a lado */
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 60px; /* Espaço entre o card e os tópicos */
+  gap: 60px;
   width: 100%;
 }
 
-.sobre-left {
-  flex: 1;
-  max-width: 580px; /* Impede que o card fique gigante */
-}
+.sobre-left { flex: 1; max-width: 580px; }
+.sobre-right { flex: 1; max-width: 500px; display: flex; justify-content: flex-end; }
 
-.sobre-right {
-  flex: 1;
-  max-width: 500px;
-  display: flex;
-  justify-content: flex-end;
-}
+.topicos-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 
-.topicos-grid {
-  display: flex;
-  flex-direction: column; /* Tópicos um embaixo do outro */
-  gap: 12px;
-  width: 100%;
-}
-
-/* --- ESTILO DAS PÍLULAS --- */
 .topico-item {
   display: flex;
   align-items: center;
   gap: 15px;
   background: transparent;
-  border: 1.5px solid #4B6F93;
+  border: 1.5px solid var(--blue-main);
   padding: 12px 20px;
   border-radius: 30px;
   transition: all 0.3s ease;
@@ -402,1239 +293,356 @@ body.modal-open {
 .topico-item:hover {
   background: rgba(75, 111, 147, 0.05);
   transform: translateX(5px);
-  box-shadow: 0 5px 15px rgba(75, 111, 147, 0.15);
 }
 
+.topico-item span { font-size: 0.95rem; color: var(--text); font-weight: 500; line-height: 1.3; }
 
-.topico-item span {
-  font-size: 0.95rem;
-  color: var(--text);
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-/* --- RESPONSIVIDADE (CELULAR/TABLET) --- */
-@media (max-width: 1100px) {
-  .sobre-container {
-    flex-direction: column; /* Volta a ficar em coluna */
-    gap: 40px;
-  }
-  
-  .sobre-left, 
-  .sobre-right {
-    max-width: 100%;
-    width: 100%;
-  }
-}
-/* Define a aparência e o posicionamento deste elemento da página. */
 .subtitle {
-  color: var(--blue-main); /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-weight: 800; /* define a espessura do texto */
-  letter-spacing: 4px; /* define o espaçamento entre as letras */
-  font-size: 0.75rem; /* define o tamanho do texto */
-  text-transform: uppercase; /* altera a capitalização visual do texto */
+  color: var(--blue-main);
+  font-weight: 800;
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
-/* Estiliza a seção Sobre e seus elementos. */
 .sobre h2 {
-  font-size: clamp(5rem, 8vw, 7rem); /* define o tamanho do texto */
-  color:  #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin-top: 15px; /* define o espaçamento externo acima do elemento */
-  margin-bottom: 35px; /* define o espaçamento externo abaixo do elemento */
-  letter-spacing: -2px; /* define o espaçamento entre as letras */
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--blue-dark);
+  line-height: 1.1;
+  margin-top: 15px;
+  margin-bottom: 35px;
+  letter-spacing: -2px;
 }
 
-/* Estiliza a seção Sobre e seus elementos. */
 .sobre-card {
-  position: relative; /* define o método de posicionamento do elemento */
-  background: #cddce9; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  padding: 25px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 24px; /* arredonda os cantos do elemento */
-  border: 1px solid #4B6F93; /* define a borda: espessura, estilo e cor */
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
+  background: #cddce9;
+  padding: 25px;
+  border-radius: 24px;
+  border: 1px solid var(--blue-main);
+  overflow: hidden;
 }
-
-/* Estiliza a seção Sobre e seus elementos. */
-.sobre-card p {
-  font-size: clamp(0.5rem, 2.5vw, 1.1rem); /* define o tamanho do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.9; /* define a altura das linhas de texto e seu espaçamento vertical */
-  position: relative; /* define o método de posicionamento do elemento */
-}
-
+body.escuro .sobre-card { background: #18264a; }
+.sobre-card p { font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--blue-dark); line-height: 1.9; }
 
 /* EQUIPE */
+.team-section { margin-top: 42px; width: 100%; }
 
+.team-header { display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
 
+.team-header h3 { color: var(--blue-dark); font-size: 2rem; font-weight: 800; position: relative; }
 
-/* Estiliza a seção da equipe e seus cartões. */
-.team-section {
-  margin-top: 42px; /* define o espaçamento externo acima do elemento */
-  width: 100%; /* define a largura do elemento */
-  min-width: 0; /* define a largura mínima permitida */
-}
-
-/* Estiliza a navegação superior e seus elementos. */
-.team-header {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  margin-bottom: 25px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza a navegação superior e seus elementos. */
-.team-header h3 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 2rem; /* define o tamanho do texto */
-  font-weight: 800; /* define a espessura do texto */
-  position: relative; /* define o método de posicionamento do elemento */
-}
-
-/* Cria um pseudo-elemento decorativo, sem precisar adicionar outro elemento no HTML. */
 .team-header h3::after {
-  content: ""; /* insere conteúdo gerado por CSS, comum em pseudo-elementos */
-  display: block; /* define o tipo de exibição e o comportamento de layout do elemento */
-  width: 55px; /* define a largura do elemento */
-  height: 4px; /* define a altura do elemento */
-  margin: 10px auto 0; /* define o espaçamento externo do elemento */
-  border-radius: 10px; /* arredonda os cantos do elemento */
-  background: #4B6F93; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
+  content: ""; display: block; width: 55px; height: 4px; margin: 10px auto 0; border-radius: 10px; background: var(--blue-main);
 }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
 .team-carousel-wrapper {
-  position: relative; /* define o método de posicionamento do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  gap: 15px; /* define o espaço entre os itens de um layout */
-  width: 100%; /* define a largura do elemento */
-  margin-top: 18px; /* define o espaçamento externo acima do elemento */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 18px;
 }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-.team-carousel {
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-  width: 100%; /* define a largura do elemento */
-  flex: 1; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  padding: 10px 5px; /* define o espaçamento interno entre o conteúdo e as bordas */
-}
+.team-carousel { overflow: hidden; width: 100%; flex: 1; padding: 10px 5px; }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-.team-track {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  gap: 20px; /* define o espaço entre os itens de um layout */
-  transition: transform 0.5s ease; /* suaviza a mudança entre estados ou valores de estilo */
-  width: max-content; /* define a largura do elemento */
-}
+.team-track { display: flex; gap: 20px; transition: transform 0.5s ease; width: max-content; }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-.team-slide {
-  flex: 0 0 290px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  width: 290px; /* define a largura do elemento */
-  min-width: 290px; /* define a largura mínima permitida */
-}
+.team-slide { flex: 0 0 290px; width: 290px; min-width: 290px; }
 
-.team-prev,
-/* Estiliza a seção da equipe e seus cartões. */
-.team-next {
-  flex-shrink: 0; /* controla quanto o item pode encolher dentro de um Flexbox */
-  width: 48px; /* define a largura do elemento */
-  height: 48px; /* define a altura do elemento */
-  border-radius: 50%; /* arredonda os cantos do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* define a borda: espessura, estilo e cor */
-  background: white; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  font-size: 1.1rem; /* define o tamanho do texto */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
+.team-prev, .team-next {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-main);
+  color: var(--blue-dark);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  display: flex; align-items: center; justify-content: center;
 }
+.team-prev:hover, .team-next:hover { background: var(--blue-main); color: white; }
 
-.team-prev:hover,
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.team-next:hover {
-  background: #B6C7D6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  transform: scale(1.08); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 8px 20px rgba(23, 105, 255, 0.30); /* adiciona sombra ao redor do elemento */
-}
+.team-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+.team-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(75, 111, 147, 0.3); cursor: pointer; border: none; transition: 0.3s; }
+.team-dot.active { background: var(--blue-main); transform: scale(1.3); }
 
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-.team-dots {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  gap: 8px; /* define o espaço entre os itens de um layout */
-  margin-top: 20px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-.team-dot {
-  width: 10px; /* define a largura do elemento */
-  height: 10px; /* define a altura do elemento */
-  border-radius: 50%; /* arredonda os cantos do elemento */
-  background: rgba(127, 185, 251, 0.25); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  border: none; /* define a borda: espessura, estilo e cor */
-  padding: 0; /* define o espaçamento interno entre o conteúdo e as bordas */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
-}
-
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.team-dot.active {
-  background: #B6C7D6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  transform: scale(1.3); /* move, gira ou redimensiona visualmente o elemento */
-}
-
-/* Estiliza a seção da equipe e seus cartões. */
 .team-card {
-  position: relative; /* define o método de posicionamento do elemento */
-  width: 100%; /* define a largura do elemento */
-  min-height: 400px; /* define a altura mínima permitida */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  flex-direction: column; /* define a direção dos itens no Flexbox: linha ou coluna */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-radius: 26px; /* arredonda os cantos do elemento */
-  padding: 12px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  text-align: center; /* alinha o texto horizontalmente */
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.10); /* define a borda: espessura, estilo e cor */
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; /* suaviza a mudança entre estados ou valores de estilo */
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--bg-main);
+  border-radius: 26px;
+  padding: 12px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.35s ease, border-color 0.35s ease;
 }
+.team-card:hover { transform: translateY(-10px); border-color: var(--blue-main); }
 
-/* Cria um pseudo-elemento decorativo, sem precisar adicionar outro elemento no HTML. */
-.team-card::before {
-  content: ""; /* insere conteúdo gerado por CSS, comum em pseudo-elementos */
-  position: absolute; /* define o método de posicionamento do elemento */
-  top: 0; /* define a distância em relação ao topo do elemento de referência */
-  left: 0; /* define a distância em relação à esquerda do elemento de referência */
-  width: 100%; /* define a largura do elemento */
-  height: 3px; /* define a altura do elemento */
-}
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.team-card:hover {
-  transform: translateY(-10px); /* move, gira ou redimensiona visualmente o elemento */
-  border-color: rgba(77, 163, 255, 0.35); /* define a cor da borda */
-}
-
-/* Estiliza a seção da equipe e seus cartões. */
 .team-card > img {
-  width: 100%; /* define a largura do elemento */
-  height: 260px; /* define a altura do elemento */
-  flex: 0 0 260px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  object-fit: contain; /* define como a imagem se ajusta à área reservada */
-  object-position: center; /* define o enquadramento da imagem dentro da área */
-  border-radius: 20px; /* arredonda os cantos do elemento */
-  margin-bottom: 14px; /* define o espaçamento externo abaixo do elemento */
-  background: #eaeff3; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
+  width: 100%; height: 260px; flex: 0 0 260px;
+  object-fit: contain; object-position: center;
+  border-radius: 20px; margin-bottom: 14px;
+  background: #eaeff3;
 }
+body.escuro .team-card > img { background: #101522; }
 
-/* Estiliza a seção da equipe e seus cartões. */
-.team-card h4 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.05rem; /* define o tamanho do texto */
-  font-weight: 700; /* define a espessura do texto */
-  margin-bottom: 5px; /* define o espaçamento externo abaixo do elemento */
-}
+.team-card h4 { color: var(--blue-dark); font-size: 1.05rem; font-weight: 700; margin-bottom: 5px; }
+.team-card p { color: var(--text); font-size: 0.86rem; }
 
-/* Estiliza a seção da equipe e seus cartões. */
-.team-card p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 0.86rem; /* define o tamanho do texto */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.social-links {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  gap: 9px; /* define o espaço entre os itens de um layout */
-  margin-top: 13px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
+.social-links { display: flex; justify-content: center; gap: 9px; margin-top: 13px; }
 .social-links a {
-  width: 34px; /* define a largura do elemento */
-  height: 34px; /* define a altura do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  border-radius: 10px; /* arredonda os cantos do elemento */
-  background: rgba(23, 105, 255, 0.10); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(77, 163, 255, 0.12); /* define a borda: espessura, estilo e cor */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 0.9rem; /* define o tamanho do texto */
-  text-decoration: none; /* controla decoração do texto, como sublinhado */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: rgba(23, 105, 255, 0.1);
+  border: 1px solid var(--border);
+  color: var(--blue-main);
+  font-size: 0.9rem; text-decoration: none; transition: 0.3s;
 }
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.social-links a:hover {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  background: var(--blue-main); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  transform: translateY(-4px); /* move, gira ou redimensiona visualmente o elemento */
-  
-}
+.social-links a:hover { color: white; background: var(--blue-main); transform: translateY(-4px); }
 
 /* PORTFÓLIO */
+.portfolio { min-height: 100vh; padding: 130px 7%; text-align: center; }
+.portfolio h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--blue-dark); margin-top: 15px; margin-bottom: 60px; letter-spacing: -2px; }
+.portfolio-single { display: flex; justify-content: center; }
+.portfolio-featured { max-width: 1000px; width: 100%; }
 
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio {
-  min-height: 100vh; /* define a altura mínima permitida */
-  padding: 130px 7%; /* define o espaçamento interno entre o conteúdo e as bordas */
-  text-align: center; /* alinha o texto horizontalmente */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* define o tamanho do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  margin-top: 15px; /* define o espaçamento externo acima do elemento */
-  margin-bottom: 60px; /* define o espaçamento externo abaixo do elemento */
-  letter-spacing: -2px; /* define o espaçamento entre as letras */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-single {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-featured {
-  max-width: 1000px; /* define a largura máxima permitida */
-  width: 100%; /* define a largura do elemento */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
 .portfolio-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-radius: 30px; /* arredonda os cantos do elemento */
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.10); /* define a borda: espessura, estilo e cor */
-  transition: 0.4s; /* suaviza a mudança entre estados ou valores de estilo */
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35); /* adiciona sombra ao redor do elemento */
+  background: var(--bg-main);
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: 0.4s;
 }
+.portfolio-card:hover { transform: translateY(-12px); border-color: var(--blue-main); }
 
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.portfolio-card:hover {
-  transform: translateY(-12px); /* move, gira ou redimensiona visualmente o elemento */
-  border-color: rgba(77, 163, 255, 0.3); /* define a cor da borda */
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5); /* adiciona sombra ao redor do elemento */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-image {
-  height: 300px; /* define a altura do elemento */
-  position: relative; /* define o método de posicionamento do elemento */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-giro {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  background: #1e2a3a; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-giro img {
-  max-width: 270px; /* define a largura máxima permitida */
-  width: 100%; /* define a largura do elemento */
-  height: auto; /* define a altura do elemento */
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35)); /* aplica efeitos visuais, como desfoque ou sombra */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-content {
-  padding: 38px; /* define o espaçamento interno entre o conteúdo e as bordas */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-content h3 {
-  color:  #232e3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  margin-bottom: 15px; /* define o espaçamento externo abaixo do elemento */
-  font-size: 1.7rem; /* define o tamanho do texto */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
-.portfolio-content p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.8; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin-bottom: 25px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza a seção de portfólio e os cartões de trabalhos. */
+.portfolio-image { height: 300px; position: relative; }
+.portfolio-giro { display: flex; align-items: center; justify-content: center; background: var(--blue-dark); }
+.portfolio-giro img { max-width: 270px; width: 100%; height: auto; }
+.portfolio-content { padding: 38px; }
+.portfolio-content h3 { color: var(--blue-dark); margin-bottom: 15px; font-size: 1.7rem; }
+.portfolio-content p { color: var(--text); line-height: 1.8; margin-bottom: 25px; }
 .portfolio-content button {
-  border: none; /* define a borda: espessura, estilo e cor */
-  background:  #4B6F93; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: white; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 14px 26px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 13px; /* arredonda os cantos do elemento */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  font-weight: 700; /* define a espessura do texto */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
+  border: none; background: var(--blue-main); color: white; padding: 14px 26px; border-radius: 13px; cursor: pointer; font-weight: 700; transition: 0.3s;
 }
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.portfolio-content button:hover {
-  transform: translateY(-3px); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 12px 30px rgba(23, 105, 255, 0.25); /* adiciona sombra ao redor do elemento */
-}
+.portfolio-content button:hover { transform: translateY(-3px); }
 
 /* PARCEIROS */
+.parceiros { padding: 130px 7%; text-align: center; }
+.parceiros h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--blue-dark); margin-top: 15px; margin-bottom: 55px; letter-spacing: -2px; }
+.parceiros-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; max-width: 1120px; margin: 0 auto; }
 
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiros {
-  padding: 130px 7%; /* define o espaçamento interno entre o conteúdo e as bordas */
-  text-align: center; /* alinha o texto horizontalmente */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiros h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* define o tamanho do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  margin-top: 15px; /* define o espaçamento externo acima do elemento */
-  margin-bottom: 55px; /* define o espaçamento externo abaixo do elemento */
-  letter-spacing: -2px; /* define o espaçamento entre as letras */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiros-grid {
-  display: grid; /* define o tipo de exibição e o comportamento de layout do elemento */
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* define a quantidade e a largura das colunas do Grid */
-  gap: 25px; /* define o espaço entre os itens de um layout */
-  max-width: 1120px; /* define a largura máxima permitida */
-  margin: 0 auto; /* define o espaçamento externo do elemento */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
 .parceiro-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(255, 255, 255, 0.09); /* define a borda: espessura, estilo e cor */
-  border-radius: 25px; /* arredonda os cantos do elemento */
-  overflow: hidden; /* controla o que acontece quando o conteúdo ultrapassa os limites do elemento */
-  text-align: left; /* alinha o texto horizontalmente */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* suaviza a mudança entre estados ou valores de estilo */
+  background: var(--bg-main); border: 1px solid var(--border); border-radius: 25px; overflow: hidden; text-align: left; transition: transform 0.3s ease;
 }
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.parceiro-card:hover {
-  transform: translateY(-8px); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4); /* adiciona sombra ao redor do elemento */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-logo {
-  background:  white; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  min-height: 220px; /* define a altura mínima permitida */
-  padding: 35px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-logo img {
-  max-width: 265px; /* define a largura máxima permitida */
-  width: 100%; /* define a largura do elemento */
-  height: auto; /* define a altura do elemento */
-  
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-conteudo {
-  padding: 32px; /* define o espaçamento interno entre o conteúdo e as bordas */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-categoria {
-  color: #4B6F93; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 0.72rem; /* define o tamanho do texto */
-  font-weight: 800; /* define a espessura do texto */
-  letter-spacing: 0.12em; /* define o espaçamento entre as letras */
-  text-transform: uppercase; /* altera a capitalização visual do texto */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-conteudo h3 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.9rem; /* define o tamanho do texto */
-  margin: 8px 0 12px; /* define o espaçamento externo do elemento */
-}
-
-/* Estiliza a seção de parceiros e seus cartões. */
-.parceiro-conteudo p {
-  color: #25303f; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1rem; /* define o tamanho do texto */
-  line-height: 1.75; /* define a altura das linhas de texto e seu espaçamento vertical */
-}
+.parceiro-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.parceiro-logo { background: #ffffff; min-height: 220px; padding: 35px; display: flex; align-items: center; justify-content: center; }
+.parceiro-logo img { max-width: 265px; width: 100%; height: auto; }
+.parceiro-conteudo { padding: 32px; }
+.parceiro-categoria { color: var(--blue-main); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.parceiro-conteudo h3 { color: var(--blue-dark); font-size: 1.9rem; margin: 8px 0 12px; }
+.parceiro-conteudo p { color: var(--text); font-size: 1rem; line-height: 1.75; }
 
 /* CONTATO */
+.contato { min-height: 100vh; padding: 130px 7%; display: flex; justify-content: space-between; align-items: center; gap: 80px; }
+.contato-left { flex: 1; }
+.contato-left h2 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--blue-dark); line-height: 1.1; margin: 20px 0; letter-spacing: -2px; }
+.contato-left p { color: var(--text); line-height: 1.9; }
+.contato-right { flex: 1; display: flex; justify-content: center; }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato {
-  min-height: 100vh; /* define a altura mínima permitida */
-  padding: 130px 7%; /* define o espaçamento interno entre o conteúdo e as bordas */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: space-between; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  gap: 80px; /* define o espaço entre os itens de um layout */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato-left {
-  flex: 1; /* define como o item flexível cresce, encolhe e ocupa espaço */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato-left h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem); /* define o tamanho do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin: 20px 0; /* define o espaçamento externo do elemento */
-  letter-spacing: -2px; /* define o espaçamento entre as letras */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato-left p {
-  color: #4B6F93; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.9; /* define a altura das linhas de texto e seu espaçamento vertical */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato-right {
-  flex: 1; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
 .contato form {
-  width: 100%; /* define a largura do elemento */
-  max-width: 500px; /* define a largura máxima permitida */
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  padding: 35px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 28px; /* arredonda os cantos do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.10); /* define a borda: espessura, estilo e cor */
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4); /* adiciona sombra ao redor do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  flex-direction: column; /* define a direção dos itens no Flexbox: linha ou coluna */
-  gap: 12px; /* define o espaço entre os itens de um layout */
+  width: 100%; max-width: 500px;
+  background: var(--bg-main);
+  padding: 35px; border-radius: 28px; border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 12px;
 }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.form-group {
-  width: 100%; /* define a largura do elemento */
+.form-group { width: 100%; }
+.contato input, .contato textarea {
+  width: 100%; padding: 17px; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.02);
+  border-radius: 13px; outline: none; font-size: 0.95rem; color: var(--text); transition: 0.25s;
 }
+body.escuro .contato input, body.escuro .contato textarea { background: rgba(255, 255, 255, 0.05); }
+.contato input::placeholder, .contato textarea::placeholder { color: #888; }
+.contato input:focus, .contato textarea:focus { border-color: var(--blue-main); background: transparent; }
+.contato input.input-error, .contato textarea.input-error { border-color: #ef4444; }
 
-.contato input,
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato textarea {
-  width: 100%; /* define a largura do elemento */
-  padding: 17px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* define a borda: espessura, estilo e cor */
-  background: rgba(255, 255, 255, 0.045); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-radius: 13px; /* arredonda os cantos do elemento */
-  outline: none; /* controla o contorno externo, separado da borda */
-  font-size: 0.95rem; /* define o tamanho do texto */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  transition: 0.25s; /* suaviza a mudança entre estados ou valores de estilo */
-}
-
-.contato input::placeholder,
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato textarea::placeholder {
-  color: #69758c; /* define a cor do texto e, em alguns elementos, dos ícones */
-}
-
-.contato input:focus,
-/* Define a aparência do elemento enquanto ele está selecionado ou em foco. */
-.contato textarea:focus {
-  background: rgba(23, 105, 255, 0.07); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-color: var(--blue-main); /* define a cor da borda */
-  box-shadow: 0 0 0 4px rgba(23, 105, 255, 0.08); /* adiciona sombra ao redor do elemento */
-}
-
-.contato input.input-error,
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato textarea.input-error {
-  border-color: #ef4444; /* define a cor da borda */
-  background: rgba(239, 68, 68, 0.07); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.form-error {
-  display: block; /* define o tipo de exibição e o comportamento de layout do elemento */
-  color: #f87171; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 0.75rem; /* define o tamanho do texto */
-  margin: 5px 5px 0; /* define o espaçamento externo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.contato textarea {
-  min-height: 180px; /* define a altura mínima permitida */
-  resize: vertical; /* define se o usuário pode redimensionar o elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
+.form-error { display: block; color: #ef4444; font-size: 0.75rem; margin: 5px 5px 0; }
+.contato textarea { min-height: 180px; resize: vertical; }
 .contato button[type="submit"] {
-  border: none; /* define a borda: espessura, estilo e cor */
-  background: #4B6F93; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 17px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 13px; /* arredonda os cantos do elemento */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  font-weight: 700; /* define a espessura do texto */
-  font-size: 0.95rem; /* define o tamanho do texto */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
+  border: none; background: var(--blue-main); color: white; padding: 17px; border-radius: 13px; cursor: pointer; font-weight: 700; font-size: 0.95rem; transition: 0.3s;
 }
+.contato button[type="submit"]:hover { transform: translateY(-3px); }
+.button-loading { display: none; }
 
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.contato button[type="submit"]:hover {
-  transform: translateY(-3px); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 15px 35px rgba(23, 105, 255, 0.25); /* adiciona sombra ao redor do elemento */
-}
-
-/* Define a aparência do controle quando ele está desabilitado. */
-.contato button[type="submit"]:disabled {
-  opacity: 0.75; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  cursor: not-allowed; /* define o formato do cursor ao passar sobre o elemento */
-  transform: none; /* move, gira ou redimensiona visualmente o elemento */
-}
-
-/* Estiliza um botão ou seu estado de interação. */
-.button-loading {
-  display: none; /* define o tipo de exibição e o comportamento de layout do elemento */
-}
-
-/* MODAL INFORMAÇÕES */
-
-/* Estiliza o formulário e os elementos da seção de contato. */
+/* MODAL INFO */
 .modal-informacoes {
-  position: fixed; /* define o método de posicionamento do elemento */
-  inset: 0; /* define simultaneamente as distâncias dos quatro lados */
-  width: 100%; /* define a largura do elemento */
-  height: 100vh; /* define a altura do elemento */
-  background: #EEF2F6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  backdrop-filter: blur(18px); /* aplica efeitos ao conteúdo que aparece atrás do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  padding: 30px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  opacity: 0; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  visibility: hidden; /* controla se o elemento fica visível sem removê-lo do layout */
-  transition: 0.35s ease; /* suaviza a mudança entre estados ou valores de estilo */
-  z-index: 5000; /* define a ordem de sobreposição; valores maiores ficam à frente */
+  position: fixed; inset: 0; width: 100%; height: 100vh;
+  background: rgba(var(--bg-main), 0.95);
+  backdrop-filter: blur(18px);
+  display: flex; justify-content: center; align-items: center; padding: 30px;
+  opacity: 0; visibility: hidden; transition: 0.35s ease; z-index: 5000;
 }
+.modal-informacoes.ativa { opacity: 1; visibility: visible; }
 
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.modal-informacoes.ativa {
-  opacity: 1; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  visibility: visible; /* controla se o elemento fica visível sem removê-lo do layout */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
 .informacoes-box {
-  width: 100%; /* define a largura do elemento */
-  max-width: 1050px; /* define a largura máxima permitida */
-  max-height: 90vh; /* define a altura máxima permitida */
-  background: #EEF2F6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(255, 255, 255, 0.10); /* define a borda: espessura, estilo e cor */
-  border-radius: 30px; /* arredonda os cantos do elemento */
-  overflow-y: auto; /* controla o conteúdo que ultrapassa os limites na vertical */
-  position: relative; /* define o método de posicionamento do elemento */
-  transform: translateY(40px) scale(0.95); /* move, gira ou redimensiona visualmente o elemento */
-  transition: 0.4s ease; /* suaviza a mudança entre estados ou valores de estilo */
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65); /* adiciona sombra ao redor do elemento */
+  width: 100%; max-width: 1050px; max-height: 90vh;
+  background: var(--bg-main); border: 1px solid var(--border); border-radius: 30px;
+  overflow-y: auto; position: relative; transform: translateY(40px); transition: 0.4s ease;
 }
+.modal-informacoes.ativa .informacoes-box { transform: translateY(0); }
 
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.modal-informacoes.ativa .informacoes-box {
-  transform: translateY(0) scale(1); /* move, gira ou redimensiona visualmente o elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
 .btn-fechar-informacoes {
-  position: absolute; /* define o método de posicionamento do elemento */
-  top: 20px; /* define a distância em relação ao topo do elemento de referência */
-  right: 20px; /* define a distância em relação à direita do elemento de referência */
-  width: 45px; /* define a largura do elemento */
-  height: 45px; /* define a altura do elemento */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* define a borda: espessura, estilo e cor */
-  border-radius: 14px; /* arredonda os cantos do elemento */
-  background: #EEF2F6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.2rem; /* define o tamanho do texto */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  z-index: 10; /* define a ordem de sobreposição; valores maiores ficam à frente */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
+  position: absolute; top: 20px; right: 20px; width: 45px; height: 45px;
+  border: 1px solid var(--border); border-radius: 14px; background: var(--bg-main); color: var(--text); font-size: 1.2rem; cursor: pointer; z-index: 10; transition: 0.3s;
 }
+.btn-fechar-informacoes:hover { background: var(--blue-main); color: white; }
 
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.btn-fechar-informacoes:hover {
-  background: white; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color:#1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  transform: rotate(90deg); /* move, gira ou redimensiona visualmente o elemento */
-}
+.informacoes-hero { padding: 75px 65px; background: var(--blue-light); color: var(--blue-dark); }
+body.escuro .informacoes-hero { background: #101522; color: #fff; }
+.informacoes-hero-content { max-width: 800px; }
+.informacoes-tag { color: var(--blue-main); font-weight: 800; letter-spacing: 3px; font-size: 0.75rem; }
+.informacoes-hero h2 { font-size: 3.2rem; line-height: 1.1; margin: 15px 0 20px; }
+.informacoes-hero p { line-height: 1.8; opacity: 0.9; }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-hero {
-  padding: 75px 65px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  background:  /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-    #e2ebf4;
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-}
+.informacoes-conteudo { padding: 55px 65px; }
+.informacoes-introducao h3, .informacoes-diferenciais h3, .informacoes-tecnologia h3 { color: var(--blue-dark); font-size: 1.8rem; margin-bottom: 15px; }
+.informacoes-introducao p, .informacoes-tecnologia p { color: var(--text); line-height: 1.8; margin-bottom: 15px; }
+.informacoes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 35px; }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-hero-content {
-  max-width: 800px; /* define a largura máxima permitida */
-}
+.informacao-card { background: rgba(0, 0, 0, 0.02); border: 1px solid var(--border); padding: 25px; border-radius: 20px; transition: 0.3s; }
+body.escuro .informacao-card { background: rgba(255, 255, 255, 0.02); }
+.informacao-card:hover { border-color: var(--blue-main); transform: translateY(-5px); }
+.informacao-card i { color: var(--blue-main); font-size: 1.8rem; margin-bottom: 15px; }
+.informacao-card h3 { color: var(--blue-dark); margin-bottom: 8px; }
+.informacao-card p { color: var(--text); line-height: 1.6; }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-tag {
-  color: #4B6F93; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-weight: 800; /* define a espessura do texto */
-  letter-spacing: 3px; /* define o espaçamento entre as letras */
-  font-size: 0.75rem; /* define o tamanho do texto */
-}
+.informacoes-diferenciais { margin-top: 50px; }
+.diferenciais-lista { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.diferencial-item { display: flex; align-items: center; gap: 12px; color: var(--text); padding: 12px; }
+.diferencial-item i { color: var(--blue-main); }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-hero h2 {
-  font-size: 3.2rem; /* define o tamanho do texto */
-  line-height: 1.1; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin: 15px 0 20px; /* define o espaçamento externo do elemento */
-}
+.informacoes-tecnologia { margin-top: 50px; }
+.tecnologias { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.tecnologia { background: rgba(75, 111, 147, 0.1); border: 1px solid var(--border); color: var(--blue-dark); padding: 11px 17px; border-radius: 11px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.tecnologia i { color: var(--blue-main); }
 
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-hero p {
-  line-height: 1.8; /* define a altura das linhas de texto e seu espaçamento vertical */
-  color: #4B6F93; /* define a cor do texto e, em alguns elementos, dos ícones */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-conteudo {
-  padding: 55px 65px; /* define o espaçamento interno entre o conteúdo e as bordas */
-}
-
-.informacoes-introducao h3,
-.informacoes-diferenciais h3,
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-tecnologia h3 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.8rem; /* define o tamanho do texto */
-  margin-bottom: 15px; /* define o espaçamento externo abaixo do elemento */
-}
-
-.informacoes-introducao p,
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-tecnologia p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.8; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin-bottom: 15px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-grid {
-  display: grid; /* define o tipo de exibição e o comportamento de layout do elemento */
-  grid-template-columns: repeat(2, 1fr); /* define a quantidade e a largura das colunas do Grid */
-  gap: 18px; /* define o espaço entre os itens de um layout */
-  margin-top: 35px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacao-card {
-  background: rgba(255, 255, 255, 0.035); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* define a borda: espessura, estilo e cor */
-  padding: 25px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 20px; /* arredonda os cantos do elemento */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
-}
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.informacao-card:hover {
-  transform: translateY(-5px); /* move, gira ou redimensiona visualmente o elemento */
-  border-color: rgba(77, 163, 255, 0.25); /* define a cor da borda */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); /* adiciona sombra ao redor do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacao-card i {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.8rem; /* define o tamanho do texto */
-  margin-bottom: 15px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacao-card h3 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  margin-bottom: 8px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacao-card p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.6; /* define a altura das linhas de texto e seu espaçamento vertical */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-diferenciais {
-  margin-top: 50px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.diferenciais-lista {
-  display: grid; /* define o tipo de exibição e o comportamento de layout do elemento */
-  grid-template-columns: repeat(2, 1fr); /* define a quantidade e a largura das colunas do Grid */
-  gap: 12px; /* define o espaço entre os itens de um layout */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.diferencial-item {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  gap: 12px; /* define o espaço entre os itens de um layout */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 12px; /* define o espaçamento interno entre o conteúdo e as bordas */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.diferencial-item i {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-tecnologia {
-  margin-top: 50px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.tecnologias {
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  flex-wrap: wrap; /* permite que itens flexíveis quebrem para a linha seguinte */
-  gap: 10px; /* define o espaço entre os itens de um layout */
-  margin-top: 20px; /* define o espaçamento externo acima do elemento */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.tecnologia {
-  background: rgba(23, 105, 255, 0.08); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(77, 163, 255, 0.12); /* define a borda: espessura, estilo e cor */
-  color:  #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 11px 17px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 11px; /* arredonda os cantos do elemento */
-  font-weight: 600; /* define a espessura do texto */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  gap: 8px; /* define o espaço entre os itens de um layout */
-}
-
-/* Define a aparência e o posicionamento deste elemento da página. */
-.tecnologia i {
-  color:#1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-cta {
-  margin-top: 50px; /* define o espaçamento externo acima do elemento */
-  padding: 38px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 22px; /* arredonda os cantos do elemento */
-  background: radial-gradient(circle at center, rgba(23, 105, 255, 0.12), rgba(255, 255, 255, 0.025)); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(255, 255, 255, 0.08); /* define a borda: espessura, estilo e cor */
-  text-align: center; /* alinha o texto horizontalmente */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-cta h3 {
-  color:  #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.8rem; /* define o tamanho do texto */
-  margin-bottom: 12px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.informacoes-cta p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.7; /* define a altura das linhas de texto e seu espaçamento vertical */
-  max-width: 650px; /* define a largura máxima permitida */
-  margin: 0 auto 25px; /* define o espaçamento externo do elemento */
-}
-
-/* Estiliza o formulário e os elementos da seção de contato. */
-.btn-informacoes-contato {
-  border: none; /* define a borda: espessura, estilo e cor */
-  background:  #92aac3; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color:  white; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 15px 25px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 13px; /* arredonda os cantos do elemento */
-  font-weight: 700; /* define a espessura do texto */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
-}
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.btn-informacoes-contato:hover {
-  transform: translateY(-3px); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 12px 30px rgba(23, 105, 255, 0.25); /* adiciona sombra ao redor do elemento */
-}
+.informacoes-cta { margin-top: 50px; padding: 38px; border-radius: 22px; background: var(--blue-light); border: 1px solid var(--border); text-align: center; }
+body.escuro .informacoes-cta { background: #101522; }
+.informacoes-cta h3 { color: var(--blue-dark); font-size: 1.8rem; margin-bottom: 12px; }
+.informacoes-cta p { color: var(--text); line-height: 1.7; max-width: 650px; margin: 0 auto 25px; }
+.btn-informacoes-contato { border: none; background: var(--blue-main); color: white; padding: 15px 25px; border-radius: 13px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-informacoes-contato:hover { transform: translateY(-3px); }
 
 /* MODAL CONFIRMAÇÃO */
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
 .modal-confirmacao {
-  position: fixed; /* define o método de posicionamento do elemento */
-  inset: 0; /* define simultaneamente as distâncias dos quatro lados */
-  width: 100%; /* define a largura do elemento */
-  height: 100vh; /* define a altura do elemento */
-  background: rgba(1, 4, 14, 0.88); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  backdrop-filter: blur(15px); /* aplica efeitos ao conteúdo que aparece atrás do elemento */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  padding: 20px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  opacity: 0; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  visibility: hidden; /* controla se o elemento fica visível sem removê-lo do layout */
-  transition: 0.3s ease; /* suaviza a mudança entre estados ou valores de estilo */
-  z-index: 6000; /* define a ordem de sobreposição; valores maiores ficam à frente */
+  position: fixed; inset: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
+  display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: 0.3s ease; z-index: 6000;
 }
+.modal-confirmacao.ativa { opacity: 1; visibility: visible; }
 
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.modal-confirmacao.ativa {
-  opacity: 1; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  visibility: visible; /* controla se o elemento fica visível sem removê-lo do layout */
-}
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
 .confirmacao-box {
-  width: 100%; /* define a largura do elemento */
-  max-width: 430px; /* define a largura máxima permitida */
-  background: linear-gradient(145deg, #101827, #080d18); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border: 1px solid rgba(255, 255, 255, 0.10); /* define a borda: espessura, estilo e cor */
-  border-radius: 28px; /* arredonda os cantos do elemento */
-  padding: 45px 35px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  text-align: center; /* alinha o texto horizontalmente */
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55); /* adiciona sombra ao redor do elemento */
-  transform: scale(0.85); /* move, gira ou redimensiona visualmente o elemento */
-  transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* suaviza a mudança entre estados ou valores de estilo */
+  width: 100%; max-width: 430px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 28px; padding: 45px 35px; text-align: center;
+  transform: scale(0.85); transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+.modal-confirmacao.ativa .confirmacao-box { transform: scale(1); }
 
-/* Define o estado ativo do componente, geralmente aplicado por uma classe adicionada via JavaScript. */
-.modal-confirmacao.ativa .confirmacao-box {
-  transform: scale(1); /* move, gira ou redimensiona visualmente o elemento */
-}
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
 .confirmacao-icone {
-  width: 85px; /* define a largura do elemento */
-  height: 85px; /* define a altura do elemento */
-  margin: 0 auto 25px; /* define o espaçamento externo do elemento */
-  border-radius: 50%; /* arredonda os cantos do elemento */
-  background: linear-gradient(135deg, #22c55e, #16a34a); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  display: flex; /* define o tipo de exibição e o comportamento de layout do elemento */
-  justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-  align-items: center; /* alinha os itens no eixo transversal do Flexbox */
-  font-size: 2.5rem; /* define o tamanho do texto */
-  box-shadow: 0 12px 35px rgba(34, 197, 94, 0.25); /* adiciona sombra ao redor do elemento */
-  animation: checkPop 0.6s ease; /* associa uma animação definida com @keyframes ao elemento */
+  width: 85px; height: 85px; margin: 0 auto 25px; border-radius: 50%; background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
+  display: flex; justify-content: center; align-items: center; font-size: 2.5rem; animation: checkPop 0.6s ease;
 }
+.confirmacao-icone i { animation: checkDraw 0.45s 0.15s ease both; }
+@keyframes checkPop { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes checkDraw { from { opacity: 0; transform: scale(0.3) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
-.confirmacao-icone i {
-  animation: checkDraw 0.45s 0.15s ease both; /* associa uma animação definida com @keyframes ao elemento */
-}
-
-@keyframes checkPop {
-  0% { transform: scale(0); opacity: 0; }
-  70% { transform: scale(1.15); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes checkDraw {
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  from { opacity: 0; transform: scale(0.3) rotate(-20deg); }
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  to { opacity: 1; transform: scale(1) rotate(0); }
-}
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
-.confirmacao-box h2 {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  font-size: 1.8rem; /* define o tamanho do texto */
-  margin-bottom: 12px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
-.confirmacao-box p {
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  line-height: 1.7; /* define a altura das linhas de texto e seu espaçamento vertical */
-  margin-bottom: 25px; /* define o espaçamento externo abaixo do elemento */
-}
-
-/* Estiliza uma janela modal, seu conteúdo ou seus controles. */
-.confirmacao-box button {
-  border: none; /* define a borda: espessura, estilo e cor */
-  background: linear-gradient(135deg, var(--blue-main), #4B6F93); /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  padding: 14px 35px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-radius: 13px; /* arredonda os cantos do elemento */
-  font-weight: 700; /* define a espessura do texto */
-  cursor: pointer; /* define o formato do cursor ao passar sobre o elemento */
-  transition: 0.3s; /* suaviza a mudança entre estados ou valores de estilo */
-}
-
-/* Define a aparência do elemento quando o ponteiro do mouse está sobre ele. */
-.confirmacao-box button:hover {
-  transform: translateY(-3px); /* move, gira ou redimensiona visualmente o elemento */
-  box-shadow: 0 12px 30px rgba(23, 105, 255, 0.25); /* adiciona sombra ao redor do elemento */
-}
+.confirmacao-box h2 { color: var(--blue-dark); font-size: 1.8rem; margin-bottom: 12px; }
+.confirmacao-box p { color: var(--text); line-height: 1.7; margin-bottom: 25px; }
+.confirmacao-box button { border: none; background: var(--blue-main); color: white; padding: 14px 35px; border-radius: 13px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.confirmacao-box button:hover { transform: translateY(-3px); }
 
 /* FOOTER */
-
-/* Estiliza o rodapé da página. */
-footer {
-  background:  #B6C7D6; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  color: #1e2a3a; /* define a cor do texto e, em alguns elementos, dos ícones */
-  text-align: center; /* alinha o texto horizontalmente */
-  padding: 65px 20px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  border-top: 1px solid rgba(255, 255, 255, 0.07); /* define a borda superior */
-}
-
-/* Cria um pseudo-elemento decorativo, sem precisar adicionar outro elemento no HTML. */
-footer::before { /* define este aspecto visual do elemento */
-  content: ""; /* insere conteúdo gerado por CSS, comum em pseudo-elementos */
-  display: block; /* define o tipo de exibição e o comportamento de layout do elemento */
-  width: 100px; /* define a largura do elemento */
-  height: 3px; /* define a altura do elemento */
-  margin: 0 auto 35px; /* define o espaçamento externo do elemento */
-  background: #4B6F93; /* define o fundo do elemento; pode ser uma cor ou um gradiente */
-  border-radius: 20px; /* arredonda os cantos do elemento */
-}
-
-/* Estiliza o rodapé da página. */
-footer img {
-  height: 160px; /* define a altura do elemento */
-  margin-bottom: 20px; /* define o espaçamento externo abaixo do elemento */
-  filter: drop-shadow(0 0 25px rgba(23, 105, 255, 0.2)); /* aplica efeitos visuais, como desfoque ou sombra */
-}
-
-/* Estiliza o rodapé da página. */
-footer p {
-  opacity: 0.55; /* controla a transparência: 0 é invisível e 1 é totalmente visível */
-  font-size: 0.85rem; /* define o tamanho do texto */
-}
+footer { background: var(--blue-light); color: var(--blue-dark); text-align: center; padding: 65px 20px; border-top: 1px solid var(--border); }
+body.escuro footer { background: #101522; color: #fff; }
+footer img { height: 160px; margin-bottom: 20px; }
+footer p { opacity: 0.8; font-size: 0.85rem; }
 
 /* RESPONSIVO */
-
-/* Regra responsiva: aplica os estilos internos somente quando a condição de tela for atendida. */
 @media (max-width: 1100px) {
-  .home,
-  .sobre,
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .contato {
-    flex-direction: column; /* define a direção dos itens no Flexbox: linha ou coluna */
-    text-align: center; /* alinha o texto horizontalmente */
-  }
-
-  /* Estiliza a seção inicial (Home) e seus elementos. */
-  .home { padding-top: 180px; }
-
-  /* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-  .carousel { max-width: 500px; }
-  /* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-  .carousel-container { width: 100%; }
-
-  /* Estiliza a seção inicial (Home) e seus elementos. */
-  .gradient-title { font-size: 4rem; }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .contato-left { max-width: 700px; }
+  .home, .sobre, .contato { flex-direction: column; text-align: center; }
+  .home { padding-top: 160px; }
+  .home-buttons { justify-content: center; }
+  .carousel-container { margin: 0 auto; width: 100%; max-width: 480px; }
+  .sobre-container { flex-direction: column; gap: 40px; }
+  .sobre-left, .sobre-right { max-width: 100%; width: 100%; }
+  .sobre-right { justify-content: center; }
+  .contato-left { max-width: 700px; margin: 0 auto; }
 }
 
-/* Regra responsiva: aplica os estilos internos somente quando a condição de tela for atendida. */
 @media (max-width: 768px) {
-  /* Estiliza a navegação superior e seus elementos. */
-  .header {
-    height: auto; /* define a altura do elemento */
-    min-height: 120px; /* define a altura mínima permitida */
-    flex-direction: column; /* define a direção dos itens no Flexbox: linha ou coluna */
-    gap: 10px; /* define o espaço entre os itens de um layout */
-    padding: 12px 20px 18px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  }
+  .header { height: 90px; min-height: 90px; padding: 0 5%; flex-wrap: nowrap; }
+  .logo img { height: 60px; transform: scale(1.6); }
+  
+  /* Menu Hambúrguer */
+  .menu-toggle { display: flex; order: 3; }
+  .header-actions { order: 2; gap: 10px; margin-right: 10px; }
+  .btn-nav { display: none; } /* Esconde o botão grande no celular */
 
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  .logo img {
-    height: 62px; /* define a altura do elemento */
-    transform: scale(1.85); /* move, gira ou redimensiona visualmente o elemento */
-  }
-
-  /* Estiliza a navegação superior e seus elementos. */
   .navbar {
-    gap: 8px; /* define o espaço entre os itens de um layout */
-    flex-wrap: wrap; /* permite que itens flexíveis quebrem para a linha seguinte */
-    justify-content: center; /* distribui e alinha os itens no eixo principal do Flexbox */
-    margin-top: 0; /* define o espaçamento externo acima do elemento */
+    position: fixed; top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);
+    background: var(--bg-main); flex-direction: column; justify-content: flex-start;
+    padding: 40px 20px; gap: 20px; transform: translateX(-100%); transition: transform 0.4s ease; z-index: 999;
+    margin-top: 0; border-top: 1px solid var(--border);
   }
-
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  .icon-circle {
-    width: 45px; /* define a largura do elemento */
-    height: 45px; /* define a altura do elemento */
-    border-radius: 13px; /* arredonda os cantos do elemento */
-  }
-
-  /* Define a aparência e o posicionamento deste elemento da página. */
+  .navbar.aberta { transform: translateX(0); }
+  .nav-item { flex-direction: row; gap: 15px; width: 100%; justify-content: flex-start; padding: 10px; }
+  .nav-item span { opacity: 1; transform: translateY(0); font-size: 1.1rem; margin-top: 0; }
+  .icon-circle { width: 45px; height: 45px; border-radius: 12px; }
   .icon-circle i { font-size: 22px; }
 
-  /* Estiliza a navegação superior e seus elementos. */
-  .nav-item span { font-size: 0.65rem; }
-
-  /* Estiliza um botão ou seu estado de interação. */
-  .btn-nav {
-    padding: 12px 18px; /* define o espaçamento interno entre o conteúdo e as bordas */
-    font-size: 0.8rem; /* define o tamanho do texto */
-  }
-
-  /* Estiliza a seção inicial (Home) e seus elementos. */
-  .home { padding-top: 250px; }
-
-  /* Estiliza a seção inicial (Home) e seus elementos. */
-  .gradient-title { font-size: 3rem; }
-
-  /* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-  .carousel { max-width: 320px; }
-
-  .sobre h2,
-  .portfolio h2,
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .contato-left h2 {
-    font-size: 2.5rem; /* define o tamanho do texto */
-  }
-
-  /* Estiliza a seção de parceiros e seus cartões. */
-  .parceiros-grid {
-    grid-template-columns: 1fr; /* define a quantidade e a largura das colunas do Grid */
-    max-width: 520px; /* define a largura máxima permitida */
-  }
-
-  /* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-  .team-slide {
-    flex: 0 0 270px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-    width: 270px; /* define a largura do elemento */
-    min-width: 270px; /* define a largura mínima permitida */
-  }
-
-  /* Estiliza a seção da equipe e seus cartões. */
+  .home { padding-top: 140px; }
+  .gradient-title { font-size: 2.8rem; letter-spacing: -2px; }
+  .sobre h2, .portfolio h2, .parceiros h2, .contato-left h2 { font-size: 2.2rem; letter-spacing: -1px; }
+  
+  .parceiros-grid { grid-template-columns: 1fr; max-width: 520px; }
+  
+  .team-slide { flex: 0 0 270px; width: 270px; min-width: 270px; }
   .team-card { min-height: 380px; }
-
-  /* Estiliza a seção da equipe e seus cartões. */
-  .team-card > img {
-    height: 240px; /* define a altura do elemento */
-    flex: 0 0 240px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  }
-
-  .team-prev,
-  /* Estiliza a seção da equipe e seus cartões. */
-  .team-next {
-    width: 40px; /* define a largura do elemento */
-    height: 40px; /* define a altura do elemento */
-    font-size: 1rem; /* define o tamanho do texto */
-  }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
+  .team-card > img { height: 240px; flex: 0 0 240px; }
+  
+  .team-prev, .team-next { width: 40px; height: 40px; font-size: 1rem; }
   .informacoes-hero { padding: 60px 25px 40px; }
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .informacoes-hero h2 { font-size: 2.1rem; }
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .informacoes-conteudo { padding: 35px 25px; }
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .informacoes-grid { grid-template-columns: 1fr; }
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  .diferenciais-lista { grid-template-columns: 1fr; }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
+  .informacoes-grid, .diferenciais-lista { grid-template-columns: 1fr; }
+  
   .modal-informacoes { padding: 12px; }
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .informacoes-box { max-height: 94vh; border-radius: 22px; }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .contato form {
-    max-width: 500px; /* define a largura máxima permitida */
-    text-align: left; /* alinha o texto horizontalmente */
-  }
+  .contato form { max-width: 500px; text-align: left; }
 }
 
-/* Regra responsiva: aplica os estilos internos somente quando a condição de tela for atendida. */
 @media (max-width: 480px) {
-  /* Estiliza a navegação superior e seus elementos. */
-  .navbar { gap: 4px; }
-
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  .icon-circle {
-    width: 40px; /* define a largura do elemento */
-    height: 40px; /* define a altura do elemento */
-  }
-
-  /* Define a aparência e o posicionamento deste elemento da página. */
-  .icon-circle i { font-size: 20px; }
-
-  /* Estiliza a seção inicial (Home) e seus elementos. */
-  .gradient-title { font-size: 2.45rem; }
-
-  .home,
-  .sobre,
-  .portfolio,
-  .parceiros,
-  /* Estiliza o formulário e os elementos da seção de contato. */
-  .contato {
-    padding-left: 5%; /* define o espaçamento interno esquerdo */
-    padding-right: 5%; /* define o espaçamento interno direito */
-  }
-
-  /* Estiliza a seção Sobre e seus elementos. */
+  .navbar { padding-top: 20px; }
+  .home, .sobre, .portfolio, .parceiros, .contato { padding-left: 5%; padding-right: 5%; }
+  .gradient-title { font-size: 2.2rem; }
+  .sobre h2, .portfolio h2, .parceiros h2, .contato-left h2 { font-size: 1.8rem; }
   .sobre-card { padding: 25px 22px; text-align: left; }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .contato form { padding: 25px 20px; }
-
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .informacoes-hero h2 { font-size: 1.75rem; }
-  /* Estiliza o formulário e os elementos da seção de contato. */
   .informacoes-conteudo { padding: 30px 20px; }
-
-  /* Estiliza uma janela modal, seu conteúdo ou seus controles. */
   .confirmacao-box { padding: 40px 25px; }
-
-  /* Estiliza a estrutura, os itens ou os controles de um carrossel. */
-  .team-slide {
-    flex: 0 0 250px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-    width: 250px; /* define a largura do elemento */
-    min-width: 250px; /* define a largura mínima permitida */
-  }
-
-  /* Estiliza a seção da equipe e seus cartões. */
-  .team-card {
-    min-height: 360px; /* define a altura mínima permitida */
-    padding: 12px; /* define o espaçamento interno entre o conteúdo e as bordas */
-  }
-
-  /* Estiliza a seção da equipe e seus cartões. */
-  .team-card > img {
-    height: 220px; /* define a altura do elemento */
-    flex: 0 0 220px; /* define como o item flexível cresce, encolhe e ocupa espaço */
-  }
-
-  /* Estiliza a seção da equipe e seus cartões. */
+  
+  .team-slide { flex: 0 0 250px; width: 250px; min-width: 250px; }
+  .team-card { min-height: 360px; padding: 12px; }
+  .team-card > img { height: 220px; flex: 0 0 220px; }
   .team-card h4 { font-size: 1rem; }
-  /* Estiliza a seção da equipe e seus cartões. */
   .team-card p { font-size: 0.82rem; }
-
-  /* Estiliza a seção de portfólio e os cartões de trabalhos. */
+  
   .portfolio-image { height: 240px; }
-  /* Estiliza a seção de portfólio e os cartões de trabalhos. */
   .portfolio-content { padding: 28px 22px; }
-  /* Estiliza a seção de parceiros e seus cartões. */
   .parceiro-conteudo { padding: 26px 22px; }
 }
-

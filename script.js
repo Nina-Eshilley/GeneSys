@@ -1,13 +1,9 @@
-/* =========================================
-   CARROSSEL DA HOME
-========================================= */
-
+/* CARROSSEL DA HOME */
 const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
 
 function nextSlide() {
   if (!slides.length) return;
-
   slides[currentSlide].classList.remove("active");
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add("active");
@@ -17,10 +13,7 @@ if (slides.length > 1) {
   setInterval(nextSlide, 3500);
 }
 
-/* =========================================
-   CARROSSEL DA EQUIPE
-========================================= */
-
+/* CARROSSEL DA EQUIPE */
 const teamCarousel = document.querySelector(".team-carousel");
 const teamTrack = document.querySelector(".team-track");
 const teamPrev = document.querySelector(".team-prev");
@@ -42,13 +35,10 @@ if (teamCarousel && teamTrack) {
 
   function criarDots() {
     if (!teamDots) return;
-
     teamDots.innerHTML = "";
-
     for (let i = 0; i < totalPaginas(); i++) {
       const dot = document.createElement("button");
       dot.className = "team-dot" + (i === teamIndex ? " active" : "");
-      dot.setAttribute("aria-label", "Ir para página " + (i + 1));
       dot.addEventListener("click", () => irPara(i));
       teamDots.appendChild(dot);
     }
@@ -56,12 +46,9 @@ if (teamCarousel && teamTrack) {
 
   function atualizar() {
     if (!teamSlides.length) return;
-
     const larguraCard = teamSlides[0].offsetWidth + 20;
     const deslocamento = -(teamIndex * porPagina() * larguraCard);
-
     teamTrack.style.transform = "translateX(" + deslocamento + "px)";
-
     document.querySelectorAll(".team-dot").forEach((d, i) => {
       d.classList.toggle("active", i === teamIndex);
     });
@@ -69,10 +56,8 @@ if (teamCarousel && teamTrack) {
 
   function irPara(novoIndex) {
     const max = totalPaginas() - 1;
-
     if (novoIndex < 0) novoIndex = max;
     if (novoIndex > max) novoIndex = 0;
-
     teamIndex = novoIndex;
     atualizar();
   }
@@ -82,10 +67,7 @@ if (teamCarousel && teamTrack) {
 
   let autoplayTeam = setInterval(() => irPara(teamIndex + 1), 3000);
 
-  teamCarousel.addEventListener("mouseenter", () => {
-    clearInterval(autoplayTeam);
-  });
-
+  teamCarousel.addEventListener("mouseenter", () => clearInterval(autoplayTeam));
   teamCarousel.addEventListener("mouseleave", () => {
     autoplayTeam = setInterval(() => irPara(teamIndex + 1), 3000);
   });
@@ -100,10 +82,25 @@ if (teamCarousel && teamTrack) {
   atualizar();
 }
 
-/* =========================================
-   MENU ATIVO
-========================================= */
+/* MENU HAMBÚRGUER */
+const menuToggle = document.querySelector(".menu-toggle");
+const navbar = document.querySelector(".navbar");
 
+if (menuToggle && navbar) {
+  menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("aberta");
+  });
+
+  document.querySelectorAll(".nav-item").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        navbar.classList.remove("aberta");
+      }
+    });
+  });
+}
+
+/* MENU ATIVO */
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-item");
 
@@ -114,7 +111,6 @@ function updateActiveMenu() {
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 220;
     const sectionBottom = sectionTop + section.offsetHeight;
-
     if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
       current = section.getAttribute("id");
     }
@@ -122,7 +118,6 @@ function updateActiveMenu() {
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
-
     if (link.getAttribute("href") === "#" + current) {
       link.classList.add("active");
     }
@@ -132,10 +127,7 @@ function updateActiveMenu() {
 window.addEventListener("scroll", updateActiveMenu);
 updateActiveMenu();
 
-/* =========================================
-   MODAL INFORMAÇÕES
-========================================= */
-
+/* MODAL INFORMAÇÕES */
 const btnQueroInformacoes = document.getElementById("btnQueroInformacoes");
 const modalInformacoes = document.getElementById("modalInformacoes");
 const btnFecharInformacoes = document.getElementById("btnFecharInformacoes");
@@ -143,17 +135,14 @@ const btnInformacoesContato = document.getElementById("btnInformacoesContato");
 
 function abrirModalInformacoes() {
   if (!modalInformacoes) return;
-
   modalInformacoes.classList.add("ativa");
   document.body.classList.add("modal-open");
-
   const caixa = modalInformacoes.querySelector(".informacoes-box");
   if (caixa) caixa.scrollTop = 0;
 }
 
 function fecharModalInformacoes() {
   if (!modalInformacoes) return;
-
   modalInformacoes.classList.remove("ativa");
   document.body.classList.remove("modal-open");
 }
@@ -165,9 +154,7 @@ if (btnQueroInformacoes) {
   });
 }
 
-if (btnFecharInformacoes) {
-  btnFecharInformacoes.addEventListener("click", fecharModalInformacoes);
-}
+if (btnFecharInformacoes) btnFecharInformacoes.addEventListener("click", fecharModalInformacoes);
 
 if (modalInformacoes) {
   modalInformacoes.addEventListener("click", (event) => {
@@ -178,41 +165,30 @@ if (modalInformacoes) {
 if (btnInformacoesContato) {
   btnInformacoesContato.addEventListener("click", () => {
     fecharModalInformacoes();
-
     setTimeout(() => {
       const contato = document.getElementById("contato");
-
-      if (contato) {
-        contato.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      if (contato) contato.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 250);
   });
 }
 
-/* =========================================
-   MODAL CONFIRMAÇÃO
-========================================= */
-
+/* MODAL CONFIRMAÇÃO */
 const modalConfirmacao = document.getElementById("modalConfirmacao");
 const btnFecharConfirmacao = document.getElementById("btnFecharConfirmacao");
 
 function abrirModalConfirmacao() {
   if (!modalConfirmacao) return;
-
   modalConfirmacao.classList.add("ativa");
   document.body.classList.add("modal-open");
 }
 
 function fecharModalConfirmacao() {
   if (!modalConfirmacao) return;
-
   modalConfirmacao.classList.remove("ativa");
   document.body.classList.remove("modal-open");
 }
 
-if (btnFecharConfirmacao) {
-  btnFecharConfirmacao.addEventListener("click", fecharModalConfirmacao);
-}
+if (btnFecharConfirmacao) btnFecharConfirmacao.addEventListener("click", fecharModalConfirmacao);
 
 if (modalConfirmacao) {
   modalConfirmacao.addEventListener("click", (event) => {
@@ -220,10 +196,7 @@ if (modalConfirmacao) {
   });
 }
 
-/* =========================================
-   FORMULÁRIO
-========================================= */
-
+/* FORMULÁRIO */
 const contactForm = document.getElementById("contactForm");
 const nomeInput = document.getElementById("nome");
 const emailInput = document.getElementById("email");
@@ -234,26 +207,19 @@ const btnEnviarMensagem = document.getElementById("btnEnviarMensagem");
 
 function mostrarErro(input, mensagem) {
   if (!input) return false;
-
   input.classList.add("input-error");
-
   const grupo = input.closest(".form-group");
-
   if (grupo) {
     const erro = grupo.querySelector(".form-error");
     if (erro) erro.textContent = mensagem;
   }
-
   return false;
 }
 
 function limparErro(input) {
   if (!input) return;
-
   input.classList.remove("input-error");
-
   const grupo = input.closest(".form-group");
-
   if (grupo) {
     const erro = grupo.querySelector(".form-error");
     if (erro) erro.textContent = "";
@@ -262,7 +228,6 @@ function limparErro(input) {
 
 function limparTodosErros() {
   if (!contactForm) return;
-
   contactForm.querySelectorAll("input, textarea").forEach(limparErro);
 }
 
@@ -276,23 +241,10 @@ function apenasNumeros(valor) {
 
 function formatarTelefone(valor) {
   let numero = apenasNumeros(valor);
-
   if (numero.length > 11) numero = numero.substring(0, 11);
-
   if (numero.length <= 2) return numero;
-
-  if (numero.length <= 7) {
-    return "(" + numero.substring(0, 2) + ") " + numero.substring(2);
-  }
-
-  return (
-    "(" +
-    numero.substring(0, 2) +
-    ") " +
-    numero.substring(2, 7) +
-    "-" +
-    numero.substring(7)
-  );
+  if (numero.length <= 7) return "(" + numero.substring(0, 2) + ") " + numero.substring(2);
+  return "(" + numero.substring(0, 2) + ") " + numero.substring(2, 7) + "-" + numero.substring(7);
 }
 
 if (telefoneInput) {
@@ -302,58 +254,33 @@ if (telefoneInput) {
   });
 
   telefoneInput.addEventListener("keydown", (event) => {
-    const teclasPermitidas = [
-      "Backspace",
-      "Delete",
-      "ArrowLeft",
-      "ArrowRight",
-      "Tab",
-      "Home",
-      "End",
-    ];
-
+    const teclasPermitidas = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Home", "End"];
     if (teclasPermitidas.includes(event.key)) return;
     if (!/^\d$/.test(event.key)) event.preventDefault();
   });
 }
 
-[nomeInput, emailInput, telefoneInput, assuntoInput, mensagemInput].forEach(
-  (input) => {
-    if (!input) return;
+[nomeInput, emailInput, telefoneInput, assuntoInput, mensagemInput].forEach((input) => {
+  if (!input) return;
+  input.addEventListener("input", () => limparErro(input));
+});
 
-    input.addEventListener("input", () => limparErro(input));
-  }
-);
-
-const camposFormulario = [
-  nomeInput,
-  emailInput,
-  telefoneInput,
-  assuntoInput,
-  mensagemInput,
-].filter(Boolean);
+const camposFormulario = [nomeInput, emailInput, telefoneInput, assuntoInput, mensagemInput].filter(Boolean);
 
 camposFormulario.forEach((campo, index) => {
   campo.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") return;
-
     if (campo.tagName.toLowerCase() === "textarea") {
       if (!event.shiftKey) {
         event.preventDefault();
-
         const proximo = camposFormulario[index + 1];
-
         if (proximo) proximo.focus();
         else if (btnEnviarMensagem) btnEnviarMensagem.focus();
       }
-
       return;
     }
-
     event.preventDefault();
-
     const proximo = camposFormulario[index + 1];
-
     if (proximo) proximo.focus();
     else if (btnEnviarMensagem) btnEnviarMensagem.focus();
   });
@@ -361,49 +288,22 @@ camposFormulario.forEach((campo, index) => {
 
 function validarFormulario() {
   let valido = true;
-
   limparTodosErros();
 
-  if (!nomeInput.value.trim()) {
-    mostrarErro(nomeInput, "Digite seu nome.");
-    valido = false;
-  } else if (nomeInput.value.trim().length < 2) {
-    mostrarErro(nomeInput, "Digite seu nome completo.");
-    valido = false;
-  }
+  if (!nomeInput.value.trim()) { mostrarErro(nomeInput, "Digite seu nome."); valido = false; }
+  else if (nomeInput.value.trim().length < 2) { mostrarErro(nomeInput, "Digite seu nome completo."); valido = false; }
 
   const email = emailInput.value.trim();
-
-  if (!email) {
-    mostrarErro(emailInput, "Digite seu e-mail.");
-    valido = false;
-  } else if (!emailValido(email)) {
-    mostrarErro(emailInput, "Digite um e-mail válido com @.");
-    valido = false;
-  }
+  if (!email) { mostrarErro(emailInput, "Digite seu e-mail."); valido = false; }
+  else if (!emailValido(email)) { mostrarErro(emailInput, "Digite um e-mail válido com @."); valido = false; }
 
   const telefone = apenasNumeros(telefoneInput.value);
+  if (!telefone) { mostrarErro(telefoneInput, "Digite seu telefone."); valido = false; }
+  else if (telefone.length < 10) { mostrarErro(telefoneInput, "Digite um telefone válido."); valido = false; }
 
-  if (!telefone) {
-    mostrarErro(telefoneInput, "Digite seu telefone.");
-    valido = false;
-  } else if (telefone.length < 10) {
-    mostrarErro(telefoneInput, "Digite um telefone válido.");
-    valido = false;
-  }
-
-  if (!assuntoInput.value.trim()) {
-    mostrarErro(assuntoInput, "Digite o assunto.");
-    valido = false;
-  }
-
-  if (!mensagemInput.value.trim()) {
-    mostrarErro(mensagemInput, "Digite sua mensagem.");
-    valido = false;
-  } else if (mensagemInput.value.trim().length < 10) {
-    mostrarErro(mensagemInput, "Escreva uma mensagem um pouco mais detalhada.");
-    valido = false;
-  }
+  if (!assuntoInput.value.trim()) { mostrarErro(assuntoInput, "Digite o assunto."); valido = false; }
+  if (!mensagemInput.value.trim()) { mostrarErro(mensagemInput, "Digite sua mensagem."); valido = false; }
+  else if (mensagemInput.value.trim().length < 10) { mostrarErro(mensagemInput, "Escreva uma mensagem um pouco mais detalhada."); valido = false; }
 
   return valido;
 }
@@ -411,10 +311,7 @@ function validarFormulario() {
 if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    const formularioValido = validarFormulario();
-
-    if (!formularioValido) {
+    if (!validarFormulario()) {
       const primeiroErro = contactForm.querySelector(".input-error");
       if (primeiroErro) primeiroErro.focus();
       return;
@@ -422,26 +319,16 @@ if (contactForm) {
 
     if (btnEnviarMensagem) {
       btnEnviarMensagem.disabled = true;
-
       const texto = btnEnviarMensagem.querySelector(".button-text");
       const loading = btnEnviarMensagem.querySelector(".button-loading");
-
       if (texto) texto.style.display = "none";
-      if (loading) {
-        loading.style.display = "inline-flex";
-        loading.style.alignItems = "center";
-        loading.style.justifyContent = "center";
-        loading.style.gap = "8px";
-      }
+      if (loading) loading.style.display = "inline-flex";
     }
 
     try {
       const resposta = await fetch("/.netlify/functions/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
           nome: nomeInput.value.trim(),
           email: emailInput.value.trim(),
@@ -452,35 +339,21 @@ if (contactForm) {
       });
 
       let resultado = {};
-
-      try {
-        resultado = await resposta.json();
-      } catch {
-        resultado = {};
-      }
+      try { resultado = await resposta.json(); } catch { resultado = {}; }
 
       if (!resposta.ok || resultado.success === false) {
-        throw new Error(
-          resultado.message ||
-            resultado.error ||
-            "Não foi possível enviar a mensagem."
-        );
+        throw new Error(resultado.message || resultado.error || "Não foi possível enviar a mensagem.");
       }
 
       contactForm.reset();
       abrirModalConfirmacao();
     } catch (erro) {
-      window.alert(
-        erro.message ||
-          "Não foi possível enviar a mensagem agora. Tente novamente."
-      );
+      window.alert(erro.message || "Não foi possível enviar a mensagem agora. Tente novamente.");
     } finally {
       if (btnEnviarMensagem) {
         btnEnviarMensagem.disabled = false;
-
         const texto = btnEnviarMensagem.querySelector(".button-text");
         const loading = btnEnviarMensagem.querySelector(".button-loading");
-
         if (texto) texto.style.display = "inline";
         if (loading) loading.style.display = "none";
       }
@@ -488,31 +361,25 @@ if (contactForm) {
   });
 }
 
-/* =========================================
-   ESC FECHA MODAIS
-========================================= */
-
+/* ESC FECHA MODAIS */
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
-
-  if (modalInformacoes && modalInformacoes.classList.contains("ativa")) {
-    fecharModalInformacoes();
-    return;
-  }
-
-  if (modalConfirmacao && modalConfirmacao.classList.contains("ativa")) {
-    fecharModalConfirmacao();
-  }
+  if (modalInformacoes && modalInformacoes.classList.contains("ativa")) { fecharModalInformacoes(); return; }
+  if (modalConfirmacao && modalConfirmacao.classList.contains("ativa")) { fecharModalConfirmacao(); }
 });
 
-const botao = document.getElementById ('botao-tema');
-const body =document.body;
-
-function temaEScuro(tipo){
-
-  if (tipo == true){
-    body.classList.add('escuro');
-  }else{
-    body.classList.remove('escuro');
-  }
+/* BOTÃO DE TEMA */
+const btnTema = document.getElementById("botao-tema");
+if (btnTema) {
+  btnTema.addEventListener("click", () => {
+    document.body.classList.toggle("escuro");
+    // Troca o ícone de lua para sol e vice-versa
+    if (document.body.classList.contains("escuro")) {
+      btnTema.classList.remove("fa-moon");
+      btnTema.classList.add("fa-sun");
+    } else {
+      btnTema.classList.remove("fa-sun");
+      btnTema.classList.add("fa-moon");
+    }
+  });
 }

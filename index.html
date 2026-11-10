@@ -19,18 +19,21 @@
       <img src="./imgs/logan.png" alt="GeneSys">
     </div>
 
+    <!-- Botão Hambúrguer (só aparece no celular) -->
+    <button class="menu-toggle" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
     <nav class="navbar">
       <a href="#home" class="nav-item">
         <div class="icon-circle"><i class="fa-solid fa-house"></i></div>
         <span>Home</span>
       </a>
       <a href="#sobre" class="nav-item">
-        
         <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
         <span>Quem Somos</span>
       </a>
-      <a href="#equipe"  class="nav-item">
-
+      <a href="#equipe" class="nav-item">
         <div class="icon-circle"><i class="fa-solid fa-user"></i></div>
         <span>Equipe</span>
       </a>
@@ -48,76 +51,60 @@
       </a>
     </nav>
 
-    <button type="button" class="btn-nav" id="btnQueroInformacoes">
-      Quero mais informações
-    </button>
+    <div class="header-actions">
+      <!-- Botão de Tema -->
+      <button class="btn-tema fa-solid fa-moon" id="botao-tema" aria-label="Alternar tema"></button>
+      
+      <button type="button" class="btn-nav" id="btnQueroInformacoes">
+        Quero mais informações
+      </button>
+    </div>
   </header>
 
-  <button href+"#" class="link"  class="fa-solid fa-moon" id="=botao-tema"></button>
-
   <!-- HOME -->
-<section id="home" class="home">
-
-  <!-- CONTEÚDO DE TEXTO -->
-  <div class="home-content">
-
-    <h1 class="gradient-title">
-      Criamos sites<br>
-      que vendem<br>
-      por você
-    </h1>
-
-    <p class="descricao">
-      Transformamos ideias em soluções digitais.
-    </p>
-
-    <!-- BOTÕES -->
-    <div class="home-buttons">
-      <a href="#contato" class="btn-primary">Comece agora</a>
-
-      <a href="#portfolio" class="btn-secondary">
-        Conheça nossos projetos
-      </a>
+  <section id="home" class="home">
+    <div class="home-content">
+      <h1 class="gradient-title">
+        Criamos sites<br>
+        que vendem<br>
+        por você
+      </h1>
+      <p class="descricao">
+        Transformamos ideias em soluções digitais.
+      </p>
+      <div class="home-buttons">
+        <a href="#contato" class="btn-primary">Comece agora</a>
+        <a href="#portfolio" class="btn-secondary">Conheça nossos projetos</a>
+      </div>
     </div>
 
-  </div>
-
-  <!-- CARROSSEL -->
-  <div class="carousel-container">
-
-    <div class="carousel">
-      <img src="./imgs/bola.jpg" class="slide active" alt="Projeto GeneSys">
-
-      <img src="./imgs/fio.jpg" class="slide" alt="Projeto GeneSys">
-
-      <img src="./imgs/html.png" class="slide" alt="Desenvolvimento Web">
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="./imgs/bola.jpg" class="slide active" alt="Projeto GeneSys">
+        <img src="./imgs/fio.jpg" class="slide" alt="Projeto GeneSys">
+        <img src="./imgs/html.png" class="slide" alt="Desenvolvimento Web">
+      </div>
     </div>
+  </section>
 
-  </div>
-
-</section>
-   <!-- SOBRE -->
-  <section id="sobre" class="sobre-section">
+  <!-- SOBRE -->
+  <section id="sobre" class="sobre">
     <div class="sobre-container">
-      
-      <!-- LADO ESQUERDO -->
       <div class="sobre-left">
         <span class="subtitle">SOBRE NÓS</span>
         <h2>Tecnologia que<br>cresce com você</h2>
-
         <div class="sobre-card">
           <p>A GeneSys cria softwares sob medida para pequenas e médias empresas, oferecendo soluções eficientes que otimizam processos e impulsionam o crescimento do seu negócio.</p>
         </div>
       </div>
 
-      <!-- LADO DIREITO (TÓPICOS) -->
       <div class="sobre-right">
         <div class="topicos-grid">
           <div class="topico-item">
             <span>Profissionais com conhecimento técnico atualizado.</span>
           </div>
           <div class="topico-item">
-            <span> Suporte eficiente e produtos que gerem valor real.</span>
+            <span>Suporte eficiente e produtos que gerem valor real.</span>
           </div>
           <div class="topico-item">
             <span>Proteção dos dados da empresa e dos clientes.</span>
@@ -127,175 +114,169 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
-      <!-- EQUIPE -->
 
-      <section id="equipe" class="equipe-section">
-      <div class="team-section">
-        <div class="team-header">
-          <h3>Nossa equipe</h3>
-        </div>
+  <!-- EQUIPE -->
+  <section id="equipe" class="equipe-section">
+    <div class="team-section">
+      <div class="team-header">
+        <h3>Nossa equipe</h3>
+      </div>
 
-        <div class="team-carousel-wrapper">
-          <button type="button" class="team-prev" aria-label="Anterior">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
+      <div class="team-carousel-wrapper">
+        <button type="button" class="team-prev" aria-label="Anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
 
-          <div class="team-carousel">
-            <div class="team-track">
-
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/raphael.png" alt="Raphael">
-                  <h4>Raphael Reinaldo</h4>
-                  <p>Gerente de Projeto</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario1" target="_blank" rel="noopener noreferrer" aria-label="GitHub Raphael"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/raphael-reinaldo-201606411" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Raphael"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+        <div class="team-carousel">
+          <div class="team-track">
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/raphael.png" alt="Raphael">
+                <h4>Raphael Reinaldo</h4>
+                <p>Gerente de Projeto</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario1" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/raphael-reinaldo-201606411" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/alice.png" alt="Alice">
-                  <h4>Alice Vitória</h4>
-                  <p>Front-End</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario2" target="_blank" rel="noopener noreferrer" aria-label="GitHub Alice"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/alice-vitória-0301a5412" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Alice"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/alice.png" alt="Alice">
+                <h4>Alice Vitória</h4>
+                <p>Front-End</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario2" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/alice-vitória-0301a5412" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/gustavo.png" alt="Gustavo">
-                  <h4>Gustavo Serafim</h4>
-                  <p>Tester</p>
-                  <div class="social-links">
-                    <a href="https://github.com/Shk7-c" target="_blank" rel="noopener noreferrer" aria-label="GitHub Gustavo"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/gustavo-serafim-948632366" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Gustavo"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/gustavo.png" alt="Gustavo">
+                <h4>Gustavo Serafim</h4>
+                <p>Tester</p>
+                <div class="social-links">
+                  <a href="https://github.com/Shk7-c" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/gustavo-serafim-948632366" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/igor.png" alt="Igor">
-                  <h4>Igor Ferreira</h4>
-                  <p>DBA</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario3" target="_blank" rel="noopener noreferrer" aria-label="GitHub Igor"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/igor-ferreira-305b28322" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Igor"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/igor.png" alt="Igor">
+                <h4>Igor Ferreira</h4>
+                <p>DBA</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario3" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/igor-ferreira-305b28322" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/miguel.png" alt="Miguel">
-                  <h4>Miguel Laurentino</h4>
-                  <p>Back-End</p>
-                  <div class="social-links">
-                    <a href="https://github.com/MLaurentinoB" target="_blank" rel="noopener noreferrer" aria-label="GitHub Miguel"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ale-miguel-l-lauren-5248a63aa" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Miguel"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/miguel.png" alt="Miguel">
+                <h4>Miguel Laurentino</h4>
+                <p>Back-End</p>
+                <div class="social-links">
+                  <a href="https://github.com/MLaurentinoB" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/ale-miguel-l-lauren-5248a63aa" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/braga.png" alt="Leonardo Braga">
-                  <h4>Leonardo Braga</h4>
-                  <p>Full Stack</p>
-                  <div class="social-links">
-                    <a href="https://github.com/Bragaaxz" target="_blank" rel="noopener noreferrer" aria-label="GitHub Braga"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/leonardo-braga-2109993a2" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Braga"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/braga.png" alt="Leonardo Braga">
+                <h4>Leonardo Braga</h4>
+                <p>Full Stack</p>
+                <div class="social-links">
+                  <a href="https://github.com/Bragaaxz" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/leonardo-braga-2109993a2" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/nicolas.png" alt="Nicolas">
-                  <h4>Nicolas de Campos</h4>
-                  <p>Full Stack / Designer</p>
-                  <div class="social-links">
-                    <a href="https://github.com/L2pro10" target="_blank" rel="noopener noreferrer" aria-label="GitHub Nicolas"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nicolas-de-campos-annibal-90385337b" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Nicolas"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/nicolas.png" alt="Nicolas">
+                <h4>Nicolas de Campos</h4>
+                <p>Full Stack / Designer</p>
+                <div class="social-links">
+                  <a href="https://github.com/L2pro10" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/nicolas-de-campos-annibal-90385337b" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/daniel.png" alt="Daniel">
-                  <h4>Daniel Moreira</h4>
-                  <p>Front-End</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario7" target="_blank" rel="noopener noreferrer" aria-label="GitHub Daniel"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nick-moreira-21b258277" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Daniel"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/daniel.png" alt="Daniel">
+                <h4>Daniel Moreira</h4>
+                <p>Front-End</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario7" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/nick-moreira-21b258277" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/sabrina.png" alt="Sabrina">
-                  <h4>Sabrina Eshilley</h4>
-                  <p>Front-End</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario5" target="_blank" rel="noopener noreferrer" aria-label="GitHub Sabrina"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sabrina-eshilley-791011306" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Sabrina"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/sabrina.png" alt="Sabrina">
+                <h4>Sabrina Eshilley</h4>
+                <p>Front-End</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario5" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/sabrina-eshilley-791011306" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/vinicius.png" alt="Vinicius">
-                  <h4>Vinicius Henrique</h4>
-                  <p>Analista</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario8" target="_blank" rel="noopener noreferrer" aria-label="GitHub Vinicius"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/vinicius-henrique-251657431" target="_blank" rel="noopener noreferrer" aria-label="Linkedin Vinicius"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/vinicius.png" alt="Vinicius">
+                <h4>Vinicius Henrique</h4>
+                <p>Analista</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario8" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/vinicius-henrique-251657431" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
+            </div>
 
-              <div class="team-slide">
-                <div class="team-card">
-                  <img src="./imgs/joao.png" alt="João">
-                  <h4>João Pedro</h4>
-                  <p>Analista</p>
-                  <div class="social-links">
-                    <a href="https://github.com/usuario9" target="_blank" rel="noopener noreferrer" aria-label="GitHub João"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/joão-pedro-matias-da-silva-961138335" target="_blank" rel="noopener noreferrer" aria-label="Linkedin João"><i class="fa-brands fa-linkedin"></i></a>
-                  </div>
+            <div class="team-slide">
+              <div class="team-card">
+                <img src="./imgs/joao.png" alt="João">
+                <h4>João Pedro</h4>
+                <p>Analista</p>
+                <div class="social-links">
+                  <a href="https://github.com/usuario9" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/joão-pedro-matias-da-silva-961138335" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
               </div>
-
             </div>
           </div>
-
-          <button type="button" class="team-next" aria-label="Próximo">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
         </div>
 
-        <div class="team-dots"></div>
+        <button type="button" class="team-next" aria-label="Próximo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
+      <div class="team-dots"></div>
     </div>
   </section>
-  
+
   <!-- PORTFÓLIO -->
   <section id="portfolio" class="portfolio">
     <span class="subtitle">PORTFÓLIO</span>
     <h2>Nosso projeto destaque</h2>
-
     <div class="portfolio-single">
       <div class="portfolio-card portfolio-featured">
         <div class="portfolio-image portfolio-giro">
@@ -314,7 +295,6 @@
   <section id="parceiros" class="parceiros">
     <span class="subtitle">PARCEIROS</span>
     <h2>Empresas de tecnologia parceiras</h2>
-
     <div class="parceiros-grid">
       <article class="parceiro-card">
         <div class="parceiro-logo">
@@ -326,7 +306,6 @@
           <p>A Lumina desenvolve soluções digitais que tornam processos mais simples, conectados e eficientes.</p>
         </div>
       </article>
-
       <article class="parceiro-card">
         <div class="parceiro-logo">
           <img src="./imgs/orion_parceriro.PNG" alt="Logo da Orion">
@@ -347,34 +326,28 @@
       <h2>Vamos transformar<br>sua ideia em realidade</h2>
       <p>Entre em contato e descubra como podemos criar uma solução digital para sua empresa.</p>
     </div>
-
     <div class="contato-right">
       <form id="contactForm" novalidate>
         <div class="form-group">
           <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" required>
           <small class="form-error"></small>
         </div>
-
         <div class="form-group">
           <input type="email" id="email" name="email" placeholder="Seu e-mail" autocomplete="email" required>
           <small class="form-error"></small>
         </div>
-
         <div class="form-group">
           <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="tel" inputmode="numeric" maxlength="15" required>
           <small class="form-error"></small>
         </div>
-
         <div class="form-group">
           <input type="text" id="assunto" name="assunto" placeholder="Assunto" required>
           <small class="form-error"></small>
         </div>
-
         <div class="form-group">
           <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" required></textarea>
           <small class="form-error"></small>
         </div>
-
         <button type="submit" id="btnEnviarMensagem">
           <span class="button-text">Enviar Mensagem</span>
           <span class="button-loading"><i class="fa-solid fa-spinner fa-spin"></i> Enviando...</span>
