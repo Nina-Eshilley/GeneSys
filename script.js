@@ -504,3 +504,15 @@ document.addEventListener("keydown", (event) => {
     fecharModalConfirmacao();
   }
 });
+
+const botao = document.getElementById ('botao-tema');
+const body =document.body;
+
+function temaEScuro(tipo){
+
+  if (tipo == true){
+    body.classList.add('escuro');
+  }else{
+    body.classList.remove('escuro');
+  }
+}

@@ -25,8 +25,14 @@
         <span>Home</span>
       </a>
       <a href="#sobre" class="nav-item">
+        
         <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
         <span>Quem Somos</span>
+      </a>
+      <a href="#equipe"  class="nav-item">
+
+        <div class="icon-circle"><i class="fa-solid fa-user"></i></div>
+        <span>Equipe</span>
       </a>
       <a href="#portfolio" class="nav-item">
         <div class="icon-circle"><i class="fa-solid fa-folder"></i></div>
@@ -47,34 +53,86 @@
     </button>
   </header>
 
+  <button href+"#" class="link"  class="fa-solid fa-moon" id="=botao-tema"></button>
+
   <!-- HOME -->
-  <section id="home" class="home">
-    <div class="home-content">
-      <h1 class="gradient-title">Criamos sites<br>que vendem<br>por você</h1>
+<section id="home" class="home">
+
+  <!-- CONTEÚDO DE TEXTO -->
+  <div class="home-content">
+
+    <h1 class="gradient-title">
+      Criamos sites<br>
+      que vendem<br>
+      por você
+    </h1>
+
+    <p class="descricao">
+      Transformamos ideias em soluções digitais.
+    </p>
+
+    <!-- BOTÕES -->
+    <div class="home-buttons">
       <a href="#contato" class="btn-primary">Comece agora</a>
+
+      <a href="#portfolio" class="btn-secondary">
+        Conheça nossos projetos
+      </a>
     </div>
 
-    <div class="carousel-container">
-      <div class="carousel">
-        <img src="./imgs/bola.jpg" class="slide active" alt="Projeto GeneSys">
-        <img src="./imgs/fio.jpg" class="slide" alt="Projeto GeneSys">
-        <img src="./imgs/html.png" class="slide" alt="Desenvolvimento Web">
+  </div>
+
+  <!-- CARROSSEL -->
+  <div class="carousel-container">
+
+    <div class="carousel">
+      <img src="./imgs/bola.jpg" class="slide active" alt="Projeto GeneSys">
+
+      <img src="./imgs/fio.jpg" class="slide" alt="Projeto GeneSys">
+
+      <img src="./imgs/html.png" class="slide" alt="Desenvolvimento Web">
+    </div>
+
+  </div>
+
+</section>
+   <!-- SOBRE -->
+  <section id="sobre" class="sobre-section">
+    <div class="sobre-container">
+      
+      <!-- LADO ESQUERDO -->
+      <div class="sobre-left">
+        <span class="subtitle">SOBRE NÓS</span>
+        <h2>Tecnologia que<br>cresce com você</h2>
+
+        <div class="sobre-card">
+          <p>A GeneSys cria softwares sob medida para pequenas e médias empresas, oferecendo soluções eficientes que otimizam processos e impulsionam o crescimento do seu negócio.</p>
+        </div>
       </div>
-      <a href="#portfolio" class="btn-secondary">Conheça nossos projetos</a>
+
+      <!-- LADO DIREITO (TÓPICOS) -->
+      <div class="sobre-right">
+        <div class="topicos-grid">
+          <div class="topico-item">
+            <span>Profissionais com conhecimento técnico atualizado.</span>
+          </div>
+          <div class="topico-item">
+            <span> Suporte eficiente e produtos que gerem valor real.</span>
+          </div>
+          <div class="topico-item">
+            <span>Proteção dos dados da empresa e dos clientes.</span>
+          </div>
+          <div class="topico-item">
+            <span>Ambiente que suporte inovação e produtividade.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
-
-  <!-- SOBRE -->
-  <section id="sobre" class="sobre">
-    <div class="sobre-left">
-      <span class="subtitle">SOBRE NÓS</span>
-      <h2>Tecnologia que<br>cresce com você</h2>
-
-      <div class="sobre-card">
-        <p>A GeneSys cria softwares sob medida para pequenas e médias empresas, oferecendo soluções eficientes que otimizam processos e impulsionam o crescimento do seu negócio.</p>
-      </div>
-
       <!-- EQUIPE -->
+
+      <section id="equipe" class="equipe-section">
       <div class="team-section">
         <div class="team-header">
           <h3>Nossa equipe</h3>
@@ -90,7 +148,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/raphael.jpeg" alt="Raphael">
+                  <img src="./imgs/raphael.png" alt="Raphael">
                   <h4>Raphael Reinaldo</h4>
                   <p>Gerente de Projeto</p>
                   <div class="social-links">
@@ -102,7 +160,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/alice.jpeg" alt="Alice">
+                  <img src="./imgs/alice.png" alt="Alice">
                   <h4>Alice Vitória</h4>
                   <p>Front-End</p>
                   <div class="social-links">
@@ -114,7 +172,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/gustavo.jpeg" alt="Gustavo">
+                  <img src="./imgs/gustavo.png" alt="Gustavo">
                   <h4>Gustavo Serafim</h4>
                   <p>Tester</p>
                   <div class="social-links">
@@ -126,7 +184,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/igor.jpeg" alt="Igor">
+                  <img src="./imgs/igor.png" alt="Igor">
                   <h4>Igor Ferreira</h4>
                   <p>DBA</p>
                   <div class="social-links">
@@ -138,7 +196,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/miguel.jpeg" alt="Miguel">
+                  <img src="./imgs/miguel.png" alt="Miguel">
                   <h4>Miguel Laurentino</h4>
                   <p>Back-End</p>
                   <div class="social-links">
@@ -150,7 +208,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/braga.jpeg" alt="Leonardo Braga">
+                  <img src="./imgs/braga.png" alt="Leonardo Braga">
                   <h4>Leonardo Braga</h4>
                   <p>Full Stack</p>
                   <div class="social-links">
@@ -162,7 +220,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/nicolas.jpeg" alt="Nicolas">
+                  <img src="./imgs/nicolas.png" alt="Nicolas">
                   <h4>Nicolas de Campos</h4>
                   <p>Full Stack / Designer</p>
                   <div class="social-links">
@@ -174,7 +232,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/daniel.jpeg" alt="Daniel">
+                  <img src="./imgs/daniel.png" alt="Daniel">
                   <h4>Daniel Moreira</h4>
                   <p>Front-End</p>
                   <div class="social-links">
@@ -186,7 +244,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/sabrina.jpeg" alt="Sabrina">
+                  <img src="./imgs/sabrina.png" alt="Sabrina">
                   <h4>Sabrina Eshilley</h4>
                   <p>Front-End</p>
                   <div class="social-links">
@@ -198,7 +256,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/vinicius.jpeg" alt="Vinicius">
+                  <img src="./imgs/vinicius.png" alt="Vinicius">
                   <h4>Vinicius Henrique</h4>
                   <p>Analista</p>
                   <div class="social-links">
@@ -210,7 +268,7 @@
 
               <div class="team-slide">
                 <div class="team-card">
-                  <img src="./imgs/joao.jpeg" alt="João">
+                  <img src="./imgs/joao.png" alt="João">
                   <h4>João Pedro</h4>
                   <p>Analista</p>
                   <div class="social-links">
@@ -232,7 +290,7 @@
       </div>
     </div>
   </section>
-
+  
   <!-- PORTFÓLIO -->
   <section id="portfolio" class="portfolio">
     <span class="subtitle">PORTFÓLIO</span>
